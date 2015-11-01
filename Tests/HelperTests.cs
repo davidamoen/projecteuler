@@ -210,5 +210,34 @@ namespace Tests
             Assert.AreEqual(26, Helpers.GetSumOfDigits(32768));
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        [TestMethod]
+        public void Test_ConvertN2BritishUsage()
+        {
+
+            Assert.AreEqual("one", Helpers.ConvertN2BritishUsage(1));
+            Assert.AreEqual("ten", Helpers.ConvertN2BritishUsage(10));
+            Assert.AreEqual("five", Helpers.ConvertN2BritishUsage(5));
+            Assert.AreEqual("fifteen", Helpers.ConvertN2BritishUsage(15));
+            Assert.AreEqual("twenty-five", Helpers.ConvertN2BritishUsage(25));
+            Assert.AreEqual("forty", Helpers.ConvertN2BritishUsage(40));
+            Assert.AreEqual("one hundred", Helpers.ConvertN2BritishUsage(100));
+            Assert.AreEqual("one hundred and five", Helpers.ConvertN2BritishUsage(105));
+            Assert.AreEqual("one hundred and forty-five", Helpers.ConvertN2BritishUsage(145));
+            Assert.AreEqual("three hundred and forty-two", Helpers.ConvertN2BritishUsage(342));
+            Assert.AreEqual("one hundred and fifteen", Helpers.ConvertN2BritishUsage(115));
+            Assert.AreEqual("five hundred and thirty-five", Helpers.ConvertN2BritishUsage(535));
+            Assert.AreEqual("five hundred and thirteen", Helpers.ConvertN2BritishUsage(513));
+            Assert.AreEqual("eight hundred and ninety-nine", Helpers.ConvertN2BritishUsage(899));
+            Assert.AreEqual("nine hundred and ninety-nine", Helpers.ConvertN2BritishUsage(999));
+            Assert.AreEqual("one thousand", Helpers.ConvertN2BritishUsage(1000));
+
+            Assert.AreEqual(23, Helpers.GetNumberLetterCountforN(342));
+            Assert.AreEqual(20, Helpers.GetNumberLetterCountforN(115));
+
+        }
+
     }
 }
