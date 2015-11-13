@@ -44,12 +44,14 @@
   <ItemGroup>
     <Compile Include="Helpers.cs" />
     <Compile Include="Problems\Eight.cs" />
+    <Compile Include="Problems\Eighteen.cs" />
     <Compile Include="Problems\Eleven.cs" />
     <Compile Include="Problems\Fifteen.cs" />
     <Compile Include="Problems\Five.cs" />
     <Compile Include="Problems\Four.cs" />
     <Compile Include="Problems\Fourteen.cs" />
     <Compile Include="Problems\Nine.cs" />
+    <Compile Include="Problems\Nineteen.cs" />
     <Compile Include="Problems\One.cs" />
     <Compile Include="Problems\Seven.cs" />
     <Compile Include="Problems\Seventeen.cs" />
@@ -59,6 +61,7 @@
     <Compile Include="Problems\Thirteen.cs" />
     <Compile Include="Problems\Three.cs" />
     <Compile Include="Problems\Twelve.cs" />
+    <Compile Include="Problems\Twenty.cs" />
     <Compile Include="Problems\Two.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

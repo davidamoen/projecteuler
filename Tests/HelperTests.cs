@@ -239,5 +239,19 @@ namespace Tests
 
         }
 
+        [TestMethod]
+        public void Test_GetMaxPathSum()
+        {
+            var grid = new List<List<long>>();
+
+            grid.Add(new List<long>() { 3 });
+            grid.Add(new List<long>() { 7, 4 });
+            grid.Add(new List<long>() { 2, 4, 6 });
+            grid.Add(new List<long>() { 8, 5, 9, 3 });
+
+            Assert.AreEqual(23, Helpers.GetMaximumPathSum(grid));
+
+        }
+
     }
 }

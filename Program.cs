@@ -28,7 +28,10 @@ namespace ProjectEuler
             //var fourteen = Fourteen.Go();
             //var fifteen = Fifteen.Go();
             //var sixteen = Sixteen.Go();
-            var seventeen = Seventeen.Go();
+            //var seventeen = Seventeen.Go();
+            //var eighteen = Eighteen.Go();
+            //var nineteen = Nineteen.Go();
+            var twenty = Twenty.Go();
         }
     }
 }

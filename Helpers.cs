@@ -423,5 +423,27 @@ namespace ProjectEuler
             return list;
         }
 
+        public static long GetMaximumPathSum(List<List<long>> grid)
+        {
+            long sum = 0;
+            while (grid.Count > 1)
+            {
+                var lastRow = grid[grid.Count - 1];
+                var secondToLastRow = grid[grid.Count - 2];
+
+                for (var i = 0; i < secondToLastRow.Count; i++)
+                {
+
+                    sum = secondToLastRow[i] + Math.Max(lastRow[i], lastRow[i + 1]);
+                    secondToLastRow[i] = sum;
+
+                }
+
+                grid.Remove(lastRow);
+            }
+            return sum;
+        }
+
+
     }
 }
