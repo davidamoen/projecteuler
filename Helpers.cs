@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using System.Numerics;
+using System.IO;
 
 namespace ProjectEuler
 {
@@ -497,7 +498,46 @@ namespace ProjectEuler
             return pair;
         }
 
+        public static long GetWordScore(string word)
+        {
+            long score = 0;
+            var arr = word.ToCharArray();
+            foreach (var s in arr)
+            {
+                score = score + GetLetterScore(s.ToString());
+            }
+            return score;
+        }
 
+        public static int GetLetterScore(string l)
+        {
+            var alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            return alpha.IndexOf(l) + 1;
+        }
+
+        public static int GetPositionInStringList(string word, List<string> list)
+        {
+            return list.IndexOf(word) + 1;
+        }
+
+        public static List<string> GetNameListFor22()
+        {
+            var list = new List<string>();
+
+            var txt = File.ReadAllText("C:\\projects\\ProjectEuler\\ProjectEuler\\Data\\p022_names.txt");
+
+            txt = txt.Replace("\"", string.Empty);
+
+            var arr = txt.Split(',');
+
+            foreach (var name in arr)
+            {
+                list.Add(name);
+            }
+
+            return list.OrderBy(n => n).ToList();
+
+        }
 
     }
 

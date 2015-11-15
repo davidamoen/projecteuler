@@ -287,8 +287,51 @@ namespace Tests
 
         }
 
+        [TestMethod]
+        public void Test_GetLetterScore()
+        {
 
+            Assert.AreEqual(1, Helpers.GetLetterScore("A"));
+            Assert.AreEqual(2, Helpers.GetLetterScore("B"));
+            Assert.AreEqual(3, Helpers.GetLetterScore("C"));
+            Assert.AreEqual(4, Helpers.GetLetterScore("D"));
+            Assert.AreEqual(5, Helpers.GetLetterScore("E"));
+            Assert.AreEqual(6, Helpers.GetLetterScore("F"));
+            Assert.AreEqual(7, Helpers.GetLetterScore("G"));
+            Assert.AreEqual(8, Helpers.GetLetterScore("H"));
+            Assert.AreEqual(9, Helpers.GetLetterScore("I"));
+            Assert.AreEqual(10, Helpers.GetLetterScore("J"));
+            Assert.AreEqual(11, Helpers.GetLetterScore("K"));
+            Assert.AreEqual(12, Helpers.GetLetterScore("L"));
+            Assert.AreEqual(13, Helpers.GetLetterScore("M"));
+            Assert.AreEqual(14, Helpers.GetLetterScore("N"));
+            Assert.AreEqual(15, Helpers.GetLetterScore("O"));
+            Assert.AreEqual(16, Helpers.GetLetterScore("P"));
+            Assert.AreEqual(17, Helpers.GetLetterScore("Q"));
+            Assert.AreEqual(18, Helpers.GetLetterScore("R"));
+            Assert.AreEqual(19, Helpers.GetLetterScore("S"));
+            Assert.AreEqual(20, Helpers.GetLetterScore("T"));
+            Assert.AreEqual(21, Helpers.GetLetterScore("U"));
+            Assert.AreEqual(22, Helpers.GetLetterScore("V"));
+            Assert.AreEqual(23, Helpers.GetLetterScore("W"));
+            Assert.AreEqual(24, Helpers.GetLetterScore("X"));
+            Assert.AreEqual(25, Helpers.GetLetterScore("Y"));
+            Assert.AreEqual(26, Helpers.GetLetterScore("Z"));
+        }
 
+        [TestMethod]
+        public void Test_GetWordScore()
+        {
+            Assert.AreEqual(53, Helpers.GetWordScore("COLIN"));
+        }
+
+        [TestMethod]
+        public void Test_GetPositionInStringList()
+        {
+            var list = Helpers.GetNameListFor22();
+
+            Assert.AreEqual(938, Helpers.GetPositionInStringList("COLIN", list));
+        }
 
     }
 }
