@@ -267,8 +267,6 @@ namespace Tests
 
             Assert.AreEqual(220, Helpers.AmicableD(284));
 
-            Assert.AreEqual(1, Helpers.AmicableD(500));
-
         }
 
         [TestMethod]
