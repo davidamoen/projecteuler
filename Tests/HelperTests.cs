@@ -154,7 +154,13 @@ namespace Tests
             Assert.AreEqual(4, Helpers.GetFactorsOfN(15).Count);
             Assert.AreEqual(4, Helpers.GetFactorsOfN(21).Count);
             Assert.AreEqual(6, Helpers.GetFactorsOfN(28).Count);
+        }
 
+        [TestMethod]
+        public void Test_GetProperDivisorsOfN()
+        {
+
+            Assert.AreEqual(11, Helpers.GetProperDivisorsOfN(220).Count);
         }
 
         [TestMethod]
@@ -252,6 +258,37 @@ namespace Tests
             Assert.AreEqual(23, Helpers.GetMaximumPathSum(grid));
 
         }
+
+        [TestMethod]
+        public void Test_AmicableD()
+        {
+
+            Assert.AreEqual(284, Helpers.AmicableD(220));
+
+            Assert.AreEqual(220, Helpers.AmicableD(284));
+
+            Assert.AreEqual(1, Helpers.AmicableD(500));
+
+        }
+
+        [TestMethod]
+        public void Test_GetAmicablePair()
+        {
+
+            Assert.AreEqual(284, Helpers.GetAmicablePair(220).b);
+
+            Assert.AreEqual(1210, Helpers.GetAmicablePair(1184).b);
+
+            Assert.AreEqual(2924, Helpers.GetAmicablePair(2620).b);
+
+            Assert.AreEqual(5564, Helpers.GetAmicablePair(5020).b);
+
+            Assert.AreEqual(0, Helpers.GetAmicablePair(100).b);
+
+        }
+
+
+
 
     }
 }

@@ -62,6 +62,7 @@
     <Compile Include="Problems\Three.cs" />
     <Compile Include="Problems\Twelve.cs" />
     <Compile Include="Problems\Twenty.cs" />
+    <Compile Include="Problems\TwentyOne.cs" />
     <Compile Include="Problems\Two.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -162,6 +162,26 @@ namespace ProjectEuler
             return list;
         }
 
+        public static List<long> GetProperDivisorsOfN(long n)
+        {
+
+            var list = new List<long>();
+            for (var i = 1; i <= Math.Sqrt(n); i++)
+            {
+                if (n % i == 0)
+                {
+                    if (i != n)list.Add(i);
+
+                    var other = (long)n / i;
+                    if (other != n)list.Add(other);
+                }
+            }
+
+            // dedupe the list
+            list = list.Distinct().ToList();
+            return list;
+        }
+
         public static List<long> GetCollatzSequence(int n)
         {
             var list = new List<long>();
@@ -186,7 +206,6 @@ namespace ProjectEuler
             return list;
 
         }
-
 
         public static BigInteger GetFactorial(int n)
         {
@@ -221,8 +240,6 @@ namespace ProjectEuler
             return p;
         }
 
-
-
         public static long GetSumOfDigits(BigInteger n)
         {
             var str = n.ToString();
@@ -235,6 +252,17 @@ namespace ProjectEuler
                 sum = sum + int.Parse(s.ToString());
             }
 
+            return sum;
+        }
+
+        public static long GetSumOfList(List<long> list)
+        {
+            long sum = 0;
+
+            foreach(var n in list)
+            {
+                sum = sum + n;
+            }
             return sum;
         }
 
@@ -444,6 +472,38 @@ namespace ProjectEuler
             return sum;
         }
 
+        public static long AmicableD(long n)
+        {
+            var factors = GetProperDivisorsOfN(n);
+            return GetSumOfList(factors);
+        }
 
+        public static AmicablePair GetAmicablePair(long n)
+        {
+            var pair = new AmicablePair();
+
+            pair.a = n;
+
+
+            long dOfA = AmicableD(pair.a);
+
+
+            if (dOfA == pair.a) return pair;
+
+            long dOfB = AmicableD(dOfA);
+
+            if (pair.a == dOfB) pair.b = dOfA;
+
+            return pair;
+        }
+
+
+
+    }
+
+    public class AmicablePair
+    {
+        public long a { get; set; }
+        public long b { get; set; }
     }
 }
