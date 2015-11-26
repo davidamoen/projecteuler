@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 using System.Numerics;
 using System.IO;
+using System.Collections;
 
 namespace ProjectEuler
 {
@@ -144,6 +145,19 @@ namespace ProjectEuler
                 .Select<int, long>(x => x)
                 .Sum();
             return result;
+        }
+
+        public static List<long> GetPrimesBelowN(int n)
+        {
+            var result = Enumerable.Range(2, n - 3)
+                .AsParallel()
+                .Where(x => IsPrime(x))
+                .Select<int, long>(x => x).ToList();
+
+
+            return result;
+
+
         }
 
         public static List<long> GetFactorsOfN(long n)
@@ -538,6 +552,31 @@ namespace ProjectEuler
             return list.OrderBy(n => n).ToList();
 
         }
+
+
+        public static List<long> GetAbundantNumbersBelowN(long n) {
+
+            List<long> list = new List<long>();
+
+            for (var i = 12; i < n; i++)
+            {
+                if (IsAbundant(i))
+                {
+                    list.Add(i);
+                }
+            }
+            return list;
+        }
+
+        public static bool IsAbundant(long n)
+        {
+            var factors = GetProperDivisorsOfN(n);
+            var sum = factors.Sum();
+
+            return sum > n;
+
+        }
+
 
     }
 

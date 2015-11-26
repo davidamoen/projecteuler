@@ -331,5 +331,24 @@ namespace Tests
             Assert.AreEqual(938, Helpers.GetPositionInStringList("COLIN", list));
         }
 
+        [TestMethod]
+        public void Test_IsAbundant()
+        {
+            Assert.IsTrue(Helpers.IsAbundant(12));
+            Assert.IsTrue(Helpers.IsAbundant(18));
+            Assert.IsTrue(Helpers.IsAbundant(72));
+            Assert.IsTrue(Helpers.IsAbundant(120));
+            Assert.IsFalse(Helpers.IsAbundant(15));
+            Assert.IsFalse(Helpers.IsAbundant(95));
+        }
+
+        [TestMethod]
+        public void Test_GetAbundantNumbersBelowN()
+        {
+            Assert.AreEqual(2, Helpers.GetAbundantNumbersBelowN(20).Count);
+            Assert.AreEqual(4, Helpers.GetAbundantNumbersBelowN(30).Count);
+            Assert.AreEqual(21, Helpers.GetAbundantNumbersBelowN(100).Count);
+        }
+
     }
 }
