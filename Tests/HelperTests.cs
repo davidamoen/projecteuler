@@ -350,5 +350,24 @@ namespace Tests
             Assert.AreEqual(21, Helpers.GetAbundantNumbersBelowN(100).Count);
         }
 
+        [TestMethod]
+        public void Test_GetLexigraphicPermutations()
+        {
+            var digits = "0,1,2";
+            var perms = Helpers.GetLexigraphicPermutations(digits);
+            Assert.AreEqual(6, perms.Count);
+            Assert.AreEqual("012", perms[0]);
+            Assert.AreEqual("021", perms[1]);
+            Assert.AreEqual("102", perms[2]);
+            Assert.AreEqual("120", perms[3]);
+            Assert.AreEqual("201", perms[4]);
+            Assert.AreEqual("210", perms[5]);
+
+            digits = "1,2,3,4";
+            perms = Helpers.GetLexigraphicPermutations(digits);
+            Assert.AreEqual(24, perms.Count);
+            Assert.IsTrue(perms.Contains("3124"));
+        }
+
     }
 }

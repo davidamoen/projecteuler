@@ -577,7 +577,66 @@ namespace ProjectEuler
 
         }
 
+        public static List<string> GetLexigraphicPermutations(string digits)
+        {
+            var list = new List<string>();
+            var digitList = digits.Split(',').Select(n => Convert.ToInt32(n)).ToList();
+            digitList = digitList.OrderBy(d => d).ToList();
 
+            var intLists = GetPermutations(digitList);
+
+            foreach (var perm in intLists)
+            {
+                var str = string.Join("", perm.Select(x => x.ToString()).ToArray());
+                list.Add(str);
+            }
+
+            return list;
+
+        }
+
+
+        private static List<List<int>> GetPermutations(List<int> list)
+        {
+            var returnList = new List<List<int>>();
+
+            //if (list.Count == 1) returnList.Add(list);
+
+            var listCopy = new List<int>(list);
+
+            if (listCopy.Count == 1)
+            {
+                returnList.Add(listCopy);
+            }
+            else
+            {
+                foreach (var item in listCopy)
+                {
+
+
+                    var firstItem = listCopy.First();
+                    var remainingList = RemoveItemFromList(item, listCopy);
+
+                    var perms = GetPermutations(remainingList);
+
+                    foreach (var perm in perms)
+                    {
+                        perm.Insert(0, item);
+                        returnList.Add(perm);
+                    }
+                }
+            }
+
+            return returnList;
+
+        }
+
+        private static List<int> RemoveItemFromList(int item, List<int> list)
+        {
+            var listCopy = new List<int>(list);
+            listCopy.Remove(item);
+            return listCopy;
+        }
     }
 
     public class AmicablePair
