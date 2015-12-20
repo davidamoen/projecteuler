@@ -369,5 +369,28 @@ namespace Tests
             Assert.IsTrue(perms.Contains("3124"));
         }
 
+        [TestMethod]
+        public void Test_FindDecimalsAsStringForD()
+        {
+            Assert.AreEqual("142857142", Helpers.FindDecimalsAsStringForD(7).Substring(0,9));
+
+            Assert.AreEqual("555555555", Helpers.FindDecimalsAsStringForD(18).Substring(0, 9));
+
+            Assert.AreEqual("123456790", Helpers.FindDecimalsAsStringForD(81).Substring(0, 9));
+
+            
+        }
+
+        [TestMethod]
+        public void Test_FindRecurringCycle()
+        {
+
+            Assert.AreEqual("3", Helpers.FindRecurringCycle("33333333"));
+            Assert.AreEqual("6", Helpers.FindRecurringCycle("166666666"));
+            Assert.AreEqual("1", Helpers.FindRecurringCycle("111111111111111"));
+            Assert.AreEqual("142857", Helpers.FindRecurringCycle("142857142857142857142857142857142857142857"));
+
+        }
+
     }
 }

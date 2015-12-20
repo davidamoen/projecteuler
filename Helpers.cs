@@ -185,10 +185,10 @@ namespace ProjectEuler
             {
                 if (n % i == 0)
                 {
-                    if (i != n)list.Add(i);
+                    if (i != n) list.Add(i);
 
                     var other = (long)n / i;
-                    if (other != n)list.Add(other);
+                    if (other != n) list.Add(other);
                 }
             }
 
@@ -274,7 +274,7 @@ namespace ProjectEuler
         {
             long sum = 0;
 
-            foreach(var n in list)
+            foreach (var n in list)
             {
                 sum = sum + n;
             }
@@ -599,9 +599,6 @@ namespace ProjectEuler
         private static List<List<int>> GetPermutations(List<int> list)
         {
             var returnList = new List<List<int>>();
-
-            //if (list.Count == 1) returnList.Add(list);
-
             var listCopy = new List<int>(list);
 
             if (listCopy.Count == 1)
@@ -612,8 +609,6 @@ namespace ProjectEuler
             {
                 foreach (var item in listCopy)
                 {
-
-
                     var firstItem = listCopy.First();
                     var remainingList = RemoveItemFromList(item, listCopy);
 
@@ -637,6 +632,70 @@ namespace ProjectEuler
             listCopy.Remove(item);
             return listCopy;
         }
+
+        public static string FindDecimalsAsStringForD(long d)
+        {
+            BigInteger multiplier = new BigInteger(10000000000000000000);
+            multiplier = BigInteger.Pow(multiplier, 200);
+            BigInteger numerator = BigInteger.Pow(multiplier, 2);
+            BigInteger denominator = BigInteger.Multiply(d, multiplier);
+            BigInteger result = BigInteger.Divide(numerator, denominator);
+
+            char[] trimChars = { '0', '.' };
+            var dStr = result.ToString().TrimStart(trimChars);
+
+            return dStr.ToString();
+        }
+
+        public static string FindRecurringCycle(string input)
+        {
+            var strLen = input.Length;
+            
+            for (var i = 1; i <= strLen; i++)
+            {
+                var str = input;
+                var strLen2 = str.Length;
+                for (var j = 1; j <= strLen2 /2; j++)
+                {
+                    if (j - 1 > str.Length) break;
+
+                    str = str.Substring(j - 1);
+
+                    if (str.Length == i) break;
+
+                    var parts = SplitInPart(str, i);
+
+                    if (parts.Count <= 1) break;
+
+                    var allEqual = !parts.Any(p => p != parts[0]);
+
+                    if (allEqual)
+                    {
+                        return parts[0];
+                    }
+
+                }
+            }
+
+
+            return string.Empty;
+        }
+
+
+        private static List<string> SplitInPart(string input, Int32 partLength)
+        {
+            var list = new List<String>();
+            var len = input.Length;
+            for (var i = 0; i < len; i += partLength)
+            {
+                if (input.Length - i <= partLength) break;
+
+                var str = input.Substring(i, Math.Min(partLength, len - 1));
+                list.Add(str);
+            }
+
+            return list;
+        }
     }
 
     public class AmicablePair
@@ -644,4 +703,5 @@ namespace ProjectEuler
         public long a { get; set; }
         public long b { get; set; }
     }
+
 }
