@@ -392,5 +392,12 @@ namespace Tests
 
         }
 
+        [TestMethod]
+        public void Test_GetQuadraticPrimes()
+        {
+            Assert.AreEqual(40, Helpers.GetQuadraticPrimes(1, 41).Count);
+            Assert.AreEqual(80, Helpers.GetQuadraticPrimes(-79, 1601).Count);    
+        }
+
     }
 }

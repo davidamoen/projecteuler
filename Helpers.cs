@@ -37,9 +37,10 @@ namespace ProjectEuler
 
         }
 
-
         public static bool IsPrime(long n)
         {
+            if (n < 0) return false;
+
             for (var i = 2; i <= Math.Sqrt(n); i++)
             {
                 if (n % i == 0) return false;
@@ -679,6 +680,29 @@ namespace ProjectEuler
 
 
             return string.Empty;
+        }
+
+        public static List<long> GetQuadraticPrimes(int a, int b)
+        {
+            double n = 0;
+            var list = new List<long>();
+
+            while (true)
+            {
+                double result = Math.Pow(n, 2) + (a * n) + b;
+                var r = (long)result;
+                if (Helpers.IsPrime(r))
+                {
+                    list.Add(r);
+                }
+                else
+                {
+                    return list;
+                }
+
+                n++;
+
+            }
         }
 
 
