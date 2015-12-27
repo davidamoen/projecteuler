@@ -399,5 +399,58 @@ namespace Tests
             Assert.AreEqual(80, Helpers.GetQuadraticPrimes(-79, 1601).Count);    
         }
 
+        [TestMethod]
+        public void Test_GetNumberSpriralGrid()
+        {
+
+            var g1 = Helpers.GetNumberSpriralGrid(3);
+            Assert.AreEqual(3, g1.Count);
+            
+            Assert.AreEqual(1, g1[1][1]);
+            Assert.AreEqual(2, g1[2][1]);
+            Assert.AreEqual(3, g1[2][2]);
+            Assert.AreEqual(4, g1[1][2]);
+            Assert.AreEqual(5, g1[0][2]);
+            Assert.AreEqual(6, g1[0][1]);
+            Assert.AreEqual(7, g1[0][0]);
+            Assert.AreEqual(8, g1[1][0]);
+            Assert.AreEqual(9, g1[2][0]);
+
+            var g2 = Helpers.GetNumberSpriralGrid(5);
+            Assert.AreEqual(1, g2[2][2]);
+            Assert.AreEqual(2, g2[3][2]);
+            Assert.AreEqual(3, g2[3][3]);
+            Assert.AreEqual(4, g2[2][3]);
+            Assert.AreEqual(5, g2[1][3]);
+            Assert.AreEqual(6, g2[1][2]);
+            Assert.AreEqual(7, g2[1][1]);
+            Assert.AreEqual(8, g2[2][1]);
+            Assert.AreEqual(9, g2[3][1]);
+            Assert.AreEqual(10, g2[4][1]);
+            Assert.AreEqual(11, g2[4][2]);
+            Assert.AreEqual(12, g2[4][3]);
+            Assert.AreEqual(13, g2[4][4]);
+            Assert.AreEqual(14, g2[3][4]);
+            Assert.AreEqual(15, g2[2][4]);
+            Assert.AreEqual(16, g2[1][4]);
+            Assert.AreEqual(17, g2[0][4]);
+            Assert.AreEqual(18, g2[0][3]);
+            Assert.AreEqual(19, g2[0][2]);
+            Assert.AreEqual(20, g2[0][1]);
+            Assert.AreEqual(21, g2[0][0]);
+            Assert.AreEqual(22, g2[1][0]);
+            Assert.AreEqual(23, g2[2][0]);
+            Assert.AreEqual(24, g2[3][0]);
+            Assert.AreEqual(25, g2[4][0]);
+
+        }
+
+        [TestMethod]
+        public void Test_GetNumberSpiralDiagonalSum()
+        {
+            var grid = Helpers.GetNumberSpriralGrid(5);
+            Assert.AreEqual(101, Helpers.GetNumberSpiralDiagonalSum(grid));
+        }
+
     }
 }

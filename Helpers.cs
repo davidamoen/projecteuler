@@ -705,6 +705,127 @@ namespace ProjectEuler
             }
         }
 
+        public static long GetNumberSpiralDiagonalSum(List<List<int>> grid)
+        {
+            long total = 0;
+            
+            // first do the diagonal from upper left to lower right
+            for (var i = 0; i < grid.Count; i++)
+            {
+                total = total + grid[i][i];
+            }
+
+            // now do the diagonal from lower left to upper right
+            for (var i = 0; i < grid.Count; i++)
+            {
+                var yCoord = grid.Count - 1 - i;
+                total = total + grid[yCoord][i];
+            }
+
+            // substact 1 because the middle cell was counted twice
+            total--;
+
+            return total;
+        }
+
+        public static List<List<int>> GetNumberSpriralGrid(int dimension)
+        {
+            // build an empty grid
+            var totalCells = 0;
+            List<List<int>> grid = new List<List<int>>();
+            for (int i = 0; i < dimension; i++)
+            {
+                List<int> row = new List<int>();
+                for (var j= 0; j < dimension; j++)
+                {
+                    row.Add(0);
+                    totalCells++;
+                }
+                grid.Add(row);
+            }
+
+            // get the mid point
+            var mid = (dimension / 2) + 1;
+
+            
+            var currentCoordinates = new Coordinates { x = mid - 1, y = mid - 1 };
+            var currentDirection = SpiralDirections.up;
+
+            grid[currentCoordinates.x][currentCoordinates.y] = 1;
+
+            var currentValue = 2;
+            while (currentValue <= totalCells)
+            {
+
+                var desiredCoordinates = GetNextCoordinates(currentCoordinates, GetNextDirection(currentDirection));
+                var currentCourseCooredinates = GetNextCoordinates(currentCoordinates, currentDirection);
+
+                if (grid[desiredCoordinates.x][desiredCoordinates.y] == 0)
+                {
+                    grid[desiredCoordinates.x][desiredCoordinates.y] = currentValue;
+                    currentCoordinates = desiredCoordinates;
+                    currentDirection = GetNextDirection(currentDirection);
+                }
+                else
+                {
+                    grid[currentCourseCooredinates.x][currentCourseCooredinates.y] = currentValue;
+                    currentCoordinates = currentCourseCooredinates;
+                }
+                currentValue++;
+            }
+
+
+            return grid;
+
+        }
+
+        private static Coordinates GetNextCoordinates(Coordinates currentCoordinates, SpiralDirections currentDirection)
+        {
+
+            var newCoordinates = new Coordinates { x = currentCoordinates.x, y = currentCoordinates.y };
+            switch (currentDirection)
+            {
+                case SpiralDirections.right:
+                    newCoordinates.x++;
+                    break;
+                case SpiralDirections.down:
+                    newCoordinates.y++;
+                    break;
+                case SpiralDirections.left:
+                    newCoordinates.x--;
+                    break;
+                case SpiralDirections.up:
+                    newCoordinates.y--;
+                    break;
+            }
+            return newCoordinates;
+
+        }
+
+        private static SpiralDirections GetNextDirection(SpiralDirections currentDirection)
+        {
+            switch (currentDirection)
+            {
+                case SpiralDirections.right:
+                    return SpiralDirections.down;
+                case SpiralDirections.down:
+                    return SpiralDirections.left;
+                case SpiralDirections.left:
+                    return SpiralDirections.up;
+                case SpiralDirections.up:
+                    return SpiralDirections.right;
+            }
+
+            return SpiralDirections.right; // should never be hit
+        }
+
+        public enum SpiralDirections
+        {
+            right,
+            down,
+            left,
+            up
+        }
 
         private static List<string> SplitInPart(string input, Int32 partLength)
         {
@@ -726,6 +847,12 @@ namespace ProjectEuler
     {
         public long a { get; set; }
         public long b { get; set; }
+    }
+
+    public class Coordinates
+    {
+        public int x { get; set; }
+        public int y { get; set; }
     }
 
 }

@@ -90,8 +90,12 @@ namespace ProjectEuler
             //var twentysix = TwentySix.Go();
             //Console.WriteLine(twentysix);
 
-            var twentyseven = TwentySeven.Go();
-            Console.WriteLine(twentyseven); 
+            //var twentyseven = TwentySeven.Go();
+            //Console.WriteLine(twentyseven); 
+
+            var twentyeight = TwentyEight.Go();
+            Console.WriteLine(twentyeight);
         }
+
     }
 }
