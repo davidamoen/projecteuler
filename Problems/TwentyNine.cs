@@ -27,7 +27,7 @@ namespace ProjectEuler.Problems
                 }
             }
 
-            return list.Distinct().OrderBy(i => i).Count();
+            return list.Distinct().Count();
         }
     }
 }

@@ -452,5 +452,19 @@ namespace Tests
             Assert.AreEqual(101, Helpers.GetNumberSpiralDiagonalSum(grid));
         }
 
+        [TestMethod]
+        public void Test_GetDigits2Powers()
+        {
+
+            var list = Helpers.GetDigits2Powers(4);
+
+            Assert.AreEqual(3, list.Count);
+            Assert.AreEqual(1634, list[0]);
+            Assert.AreEqual(8208, list[1]);
+            Assert.AreEqual(9474, list[2]);
+
+
+        }
+
     }
 }

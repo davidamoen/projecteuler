@@ -779,6 +779,46 @@ namespace ProjectEuler
 
         }
 
+
+        public static List<long> GetDigits2Powers(int power)
+        {
+            var list = new List<long>();
+
+            // build dictionary with the values for each digit
+            var values = new Dictionary<string, long>();
+            for (var i = 0; i < 10; i++) {
+                values.Add(i.ToString(), (long)Math.Pow((double)i, (double)power));
+            }
+
+            // build the max value
+            var sb = new StringBuilder();
+            for (var i = 0; i < power; i++)
+            {
+                sb.Append("9");
+            }
+
+            int maxValue = int.Parse(sb.ToString())  * 2;
+
+            for (var i = 2; i <= maxValue; i++)
+            {
+                long total = 0;
+                var str = i.ToString();
+                var arr = str.ToCharArray();
+
+                foreach (var item in arr)
+                {
+                    total = total + values[item.ToString()];
+                }
+
+                if (total == i) list.Add(total);
+
+            }
+
+            return list;
+        }
+
+
+
         private static Coordinates GetNextCoordinates(Coordinates currentCoordinates, SpiralDirections currentDirection)
         {
 
