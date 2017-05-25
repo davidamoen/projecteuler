@@ -844,6 +844,22 @@ namespace ProjectEuler
             return result;
         }
 
+        public static Tuple<bool, char> HaveLikeDigits(int a, int b)
+        {
+            char[] aChars = a.ToString().ToCharArray();
+            char[] bChars = b.ToString().ToCharArray();
+
+            foreach (char aChar in aChars)
+            {
+                foreach(char bChar in bChars)
+                {
+                    if (aChar.Equals(bChar)) return new Tuple<bool, char>(true, aChar);
+                }
+            }
+
+            return new Tuple<bool, char>(false, new char());
+        }
+
 
         private static Coordinates GetNextCoordinates(Coordinates currentCoordinates, SpiralDirections currentDirection)
         {
