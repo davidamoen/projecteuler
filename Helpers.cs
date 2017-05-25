@@ -835,6 +835,27 @@ namespace ProjectEuler
             return GetPermutations(list);
         }
 
+        public static List<List<int>> GetAllRotationsOfDigits(int num)
+        {
+            var result = new List<List<int>>();
+            var list = GetDigits(num);
+            var len = list.Count;
+
+            for (var i = 0; i < len; i++)
+            {
+                var clone = list.ConvertAll(x => x);
+                result.Add(clone);
+
+                // var newList = new List<int>();
+                var lastItem = list.Last();
+                list.Insert(0, lastItem);
+                list.RemoveAt(len);
+
+            }
+
+            return result;
+        }
+
         public static int GetCombinedDigitsFromList(List<int> list, int startIndex, int count)
         {
             var subList = list.GetRange(startIndex, count);
