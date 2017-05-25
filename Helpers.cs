@@ -67,6 +67,13 @@ namespace ProjectEuler
             return nStr == nStrRev;
         }
 
+        public static bool IsStringPalindrome(string n)
+        {
+            var nStr = n;
+            var nStrRev = new string(nStr.Reverse().ToArray());
+            return nStr == nStrRev;
+        }
+
         public static bool IsMultipleOfAllNumbers(long n, List<int> numbers)
         {
             var rtn = true;
