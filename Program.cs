@@ -105,8 +105,11 @@ namespace ProjectEuler
             //var thirtyTwo = ThirtyTwo.Go();
             //Console.WriteLine(thirtyTwo);
 
-            var thirtyThree = ThirtyThree.Go();
-            Console.WriteLine(thirtyThree);
+            //var thirtyThree = ThirtyThree.Go();
+            //Console.WriteLine(thirtyThree);
+
+            var thirtyFour = ThirtyFour.Go();
+            Console.WriteLine(thirtyFour);
         }
 
 

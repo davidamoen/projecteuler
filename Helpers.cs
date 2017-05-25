@@ -817,16 +817,21 @@ namespace ProjectEuler
             return list;
         }
 
-        public static List<List<int>> GetAllPermutationsOfDigits(int num)
+        public static List<int> GetDigits(int num)
         {
             var list = new List<int>();
             var numStr = num.ToString();
             char[] digits = numStr.ToCharArray();
-            foreach(char c in digits)
+            foreach (char c in digits)
             {
                 list.Add(int.Parse(c.ToString()));
             }
+            return list;
+        }
 
+        public static List<List<int>> GetAllPermutationsOfDigits(int num)
+        {
+            var list = GetDigits(num);
             return GetPermutations(list);
         }
 
