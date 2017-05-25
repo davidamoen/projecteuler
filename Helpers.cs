@@ -651,7 +651,7 @@ namespace ProjectEuler
         public static string FindRecurringCycle(string input)
         {
             var strLen = input.Length;
-            
+
             for (var i = 1; i <= strLen; i++)
             {
                 var str = input;
@@ -708,7 +708,7 @@ namespace ProjectEuler
         public static long GetNumberSpiralDiagonalSum(List<List<int>> grid)
         {
             long total = 0;
-            
+
             // first do the diagonal from upper left to lower right
             for (var i = 0; i < grid.Count; i++)
             {
@@ -747,7 +747,7 @@ namespace ProjectEuler
             // get the mid point
             var mid = (dimension / 2) + 1;
 
-            
+
             var currentCoordinates = new Coordinates { x = mid - 1, y = mid - 1 };
             var currentDirection = SpiralDirections.up;
 
@@ -817,6 +817,32 @@ namespace ProjectEuler
             return list;
         }
 
+        public static List<List<int>> GetAllPermutationsOfDigits(int num)
+        {
+            var list = new List<int>();
+            var numStr = num.ToString();
+            char[] digits = numStr.ToCharArray();
+            foreach(char c in digits)
+            {
+                list.Add(int.Parse(c.ToString()));
+            }
+
+            return GetPermutations(list);
+        }
+
+        public static int GetCombinedDigitsFromList(List<int> list, int startIndex, int count)
+        {
+            var subList = list.GetRange(startIndex, count);
+            var result = 0;
+            var counter = 1;
+            foreach(var item in subList)
+            {
+                var power = count - counter;
+                result += item * (int)Math.Pow(10, power);
+                counter++;
+            }
+            return result;
+        }
 
 
         private static Coordinates GetNextCoordinates(Coordinates currentCoordinates, SpiralDirections currentDirection)

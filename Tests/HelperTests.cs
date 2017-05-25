@@ -217,7 +217,7 @@ namespace Tests
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [TestMethod]
         public void Test_ConvertN2BritishUsage()
@@ -378,7 +378,7 @@ namespace Tests
 
             Assert.AreEqual("123456790", Helpers.FindDecimalsAsStringForD(81).Substring(0, 9));
 
-            
+
         }
 
         [TestMethod]
@@ -396,7 +396,7 @@ namespace Tests
         public void Test_GetQuadraticPrimes()
         {
             Assert.AreEqual(40, Helpers.GetQuadraticPrimes(1, 41).Count);
-            Assert.AreEqual(80, Helpers.GetQuadraticPrimes(-79, 1601).Count);    
+            Assert.AreEqual(80, Helpers.GetQuadraticPrimes(-79, 1601).Count);
         }
 
         [TestMethod]
@@ -405,7 +405,7 @@ namespace Tests
 
             var g1 = Helpers.GetNumberSpriralGrid(3);
             Assert.AreEqual(3, g1.Count);
-            
+
             Assert.AreEqual(1, g1[1][1]);
             Assert.AreEqual(2, g1[2][1]);
             Assert.AreEqual(3, g1[2][2]);
@@ -462,8 +462,21 @@ namespace Tests
             Assert.AreEqual(1634, list[0]);
             Assert.AreEqual(8208, list[1]);
             Assert.AreEqual(9474, list[2]);
+        }
 
+        [TestMethod]
+        public void Test_GetAllPermsFromNum()
+        {
+            var small = Helpers.GetAllPermutationsOfDigits(3);
+            Assert.AreEqual(1, small.Count);
 
+            var medium = Helpers.GetAllPermutationsOfDigits(123);
+            Assert.AreEqual(6, medium.Count);
+
+            var large = Helpers.GetAllPermutationsOfDigits(15234);
+            Assert.AreEqual(120, large.Count);
+
+            var xl = Helpers.GetAllPermutationsOfDigits(123456789);
         }
 
     }
