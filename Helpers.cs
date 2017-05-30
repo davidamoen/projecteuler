@@ -39,7 +39,7 @@ namespace ProjectEuler
 
         public static bool IsPrime(long n)
         {
-            if (n < 0) return false;
+            if (n < 2) return false;
 
             for (var i = 2; i <= Math.Sqrt(n); i++)
             {
@@ -111,6 +111,52 @@ namespace ProjectEuler
             return current;
         }
 
+        public static bool IsPrimeLeftTruncatable(long prime)
+        {
+            var nStr = prime.ToString();
+            var len = nStr.Length;
+            // var nStrRight = prime.ToString();
+
+            for (var i = 0; i < len-1; i++)
+            {
+                nStr = nStr.Substring(1);
+                if (!Helpers.IsPrime(int.Parse(nStr)))
+                {
+                    return false;
+                }
+
+                for (var j = 1; j < 10; j++)
+                {
+
+                }
+
+            }
+
+
+            return true;
+        }
+
+        public static bool IsPrimeRightTruncatable(long prime)
+        {
+            var nStr = prime.ToString();
+            var len = nStr.Length;
+            // var nStrRight = prime.ToString();
+
+            for (var i = 0; i < len - 1; i++)
+            {
+                // nStr = nStr.Substring(1);
+                nStr = nStr.Substring(0, nStr.Length - 1);
+
+                if (!Helpers.IsPrime(int.Parse(nStr)))
+                {
+                    return false;
+                }
+            }
+
+
+            return true;
+        }
+
         public static long GetProduct(List<int> list)
         {
             long product = 1;
@@ -163,9 +209,17 @@ namespace ProjectEuler
                 .Select<int, long>(x => x).ToList();
 
 
+            return result.OrderBy(x => x).ToList();
+        }
+
+        public static List<string> GetPrimesBelowNAsStrings(int n)
+        {
+            var result = new List<string>();
+            foreach(var prime in GetPrimesBelowN(n))
+            {
+                result.Add(prime.ToString());
+            }
             return result;
-
-
         }
 
         public static List<long> GetFactorsOfN(long n)

@@ -16,7 +16,7 @@ namespace Tests
         public void Test_IsPrime()
         {
 
-            Assert.IsTrue(Helpers.IsPrime(1));
+            //Assert.IsTrue(Helpers.IsPrime(1));
 
             Assert.IsTrue(Helpers.IsPrime(2));
 
