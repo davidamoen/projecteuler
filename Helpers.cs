@@ -111,52 +111,6 @@ namespace ProjectEuler
             return current;
         }
 
-        public static bool IsPrimeLeftTruncatable(long prime)
-        {
-            var nStr = prime.ToString();
-            var len = nStr.Length;
-            // var nStrRight = prime.ToString();
-
-            for (var i = 0; i < len-1; i++)
-            {
-                nStr = nStr.Substring(1);
-                if (!Helpers.IsPrime(int.Parse(nStr)))
-                {
-                    return false;
-                }
-
-                for (var j = 1; j < 10; j++)
-                {
-
-                }
-
-            }
-
-
-            return true;
-        }
-
-        public static bool IsPrimeRightTruncatable(long prime)
-        {
-            var nStr = prime.ToString();
-            var len = nStr.Length;
-            // var nStrRight = prime.ToString();
-
-            for (var i = 0; i < len - 1; i++)
-            {
-                // nStr = nStr.Substring(1);
-                nStr = nStr.Substring(0, nStr.Length - 1);
-
-                if (!Helpers.IsPrime(int.Parse(nStr)))
-                {
-                    return false;
-                }
-            }
-
-
-            return true;
-        }
-
         public static long GetProduct(List<int> list)
         {
             long product = 1;
@@ -237,6 +191,29 @@ namespace ProjectEuler
             // dedupe the list
             list = list.Distinct().ToList();
             return list;
+        }
+
+        public static long GetLargestCommonFactor(List<long> list)
+        {
+            var factorsList = new List<List<long>>();
+            foreach (var n in list)
+            {
+                factorsList.Add(GetFactorsOfN(n));
+            }
+
+            //foreach(var factors in factorsList)
+            //{
+            //    foreach(var factor in factors)
+            //    {
+
+
+            //    }
+            //}
+
+
+            var commonFactors = new List<long>();
+
+            return 0;
         }
 
         public static List<long> GetProperDivisorsOfN(long n)
