@@ -127,6 +127,11 @@ namespace ProjectEuler
             return t.A * t.A + t.B * t.B == t.C * t.C;
         }
 
+        public static bool IsPythagorean(double a, double b, double c)
+        {
+            return a * a + b * b == c * c;
+        }
+
         public static long FindSumofPrimesBelowN(int n)
         {
 
@@ -924,6 +929,33 @@ namespace ProjectEuler
             return new Tuple<bool, char>(false, new char());
         }
 
+        public static List<List<int>> GetRightTriangleSolutionsForP(int p)
+        {
+            var result = new List<List<int>>();
+            var low = p / 3;
+            var high = low * 2;
+
+            for(var c = low; c < high; c++)
+            {
+                var remaining = p - c;
+                for (var b = 1; b < remaining; b++ )
+                {
+                    var a = remaining - b;
+                    if (IsPythagorean(a, b, c))
+                    {
+                        try
+                        {
+                            var t = new Triplet() { A = a, B = b, C = c };
+                            result.Add(new List<int>() { a, b, c });
+                        }
+                        catch { }
+                    }
+                }
+            }
+
+
+            return result;
+        }
 
         private static Coordinates GetNextCoordinates(Coordinates currentCoordinates, SpiralDirections currentDirection)
         {

@@ -479,5 +479,12 @@ namespace Tests
             var xl = Helpers.GetAllPermutationsOfDigits(123456789);
         }
 
+        [TestMethod]
+        public void Test_GetRightTriangleSolutionsForP()
+        {
+            var result = Helpers.GetRightTriangleSolutionsForP(120);
+            Assert.AreEqual(3, result.Count);
+        }
+
     }
 }
