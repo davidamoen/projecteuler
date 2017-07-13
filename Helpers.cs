@@ -957,6 +957,35 @@ namespace ProjectEuler
             return result;
         }
 
+        public static string GetChampernownesConstantForNDigits(int n)
+        {
+            StringBuilder sb = new StringBuilder("123456789");
+            var digits = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+            var counter = 1;
+            var keepGoing = true;
+
+            while (keepGoing)
+            {
+                foreach (var d in digits)
+                {
+                    sb.AppendFormat("{0}{1}", counter, d);
+
+                    if (sb.Length >= n)
+                    {
+                        keepGoing = false;
+                        break;
+                    }
+                }
+                counter++;
+            }
+            return sb.ToString();
+        }
+
+        public static int GetValFromChampernownesConstant(string cham, int n)
+        {
+            return int.Parse(cham.Substring(n - 1, 1)); // should be 0
+        }
+
         private static Coordinates GetNextCoordinates(Coordinates currentCoordinates, SpiralDirections currentDirection)
         {
 
