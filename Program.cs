@@ -131,8 +131,11 @@ namespace ProjectEuler
             //var fortyone = FortyOne.Go();
             //Console.WriteLine(fortyone);
 
-            var fortytwo = FortyTwo.Go();
-            Console.WriteLine(fortytwo);
+            //var fortytwo = FortyTwo.Go();
+            //Console.WriteLine(fortytwo);
+
+            var fortythree = FortyThree.Go();
+            Console.WriteLine(fortythree);
         }
 
 
