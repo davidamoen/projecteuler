@@ -996,6 +996,31 @@ namespace ProjectEuler
             return int.Parse(sb.ToString());
         }
 
+        public static double GetTriangleNumberForN(int n)
+        {
+            return (.5) * n * ((double)n + 1);
+        }
+
+        public static List<string> GetWordListFor42()
+        {
+            var list = new List<string>();
+
+            // var txt = File.ReadAllText("C:\\projects\\ProjectEuler\\ProjectEuler\\Data\\p042_words.txt");
+            var txt = File.ReadAllText("C:\\Users\\a7031\\Source\\Repos\\projecteuler\\Data\\p042_words.txt");
+
+            txt = txt.Replace("\"", string.Empty);
+
+            var arr = txt.Split(',');
+
+            foreach (var name in arr)
+            {
+                list.Add(name);
+            }
+
+            return list.OrderBy(n => n).ToList();
+
+        }
+
         private static Coordinates GetNextCoordinates(Coordinates currentCoordinates, SpiralDirections currentDirection)
         {
 
