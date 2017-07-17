@@ -986,6 +986,16 @@ namespace ProjectEuler
             return int.Parse(cham.Substring(n - 1, 1)); // should be 0
         }
 
+        public static int GetIntFromIntList(List<int> list)
+        {
+            var sb = new StringBuilder();
+            foreach(var item in list)
+            {
+                sb.Append(item);
+            }
+            return int.Parse(sb.ToString());
+        }
+
         private static Coordinates GetNextCoordinates(Coordinates currentCoordinates, SpiralDirections currentDirection)
         {
 
