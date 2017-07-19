@@ -11,7 +11,7 @@ namespace ProjectEuler.Problems
         public static long Go()
         {
             var pans = Helpers.GetAllPermutationsOfDigits(1234567890);
-            var allWithProperty = new List<int>();
+            var allWithProperty = new List<long>();
 
             // var test = HasProperty(new List<int>() { 1, 4, 0, 6, 3, 5, 7, 2, 8, 9 });
 
@@ -23,7 +23,7 @@ namespace ProjectEuler.Problems
                 }
             }
 
-            return 0;
+            return allWithProperty.Sum();
         }
 
         private static bool HasProperty(List<int> list)

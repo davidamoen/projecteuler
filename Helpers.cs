@@ -986,14 +986,14 @@ namespace ProjectEuler
             return int.Parse(cham.Substring(n - 1, 1)); // should be 0
         }
 
-        public static int GetIntFromIntList(List<int> list)
+        public static long GetIntFromIntList(List<int> list)
         {
             var sb = new StringBuilder();
             foreach(var item in list)
             {
                 sb.Append(item);
             }
-            return int.Parse(sb.ToString());
+            return long.Parse(sb.ToString());
         }
 
         public static double GetTriangleNumberForN(int n)

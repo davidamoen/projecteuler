@@ -11,7 +11,7 @@ namespace ProjectEuler.Problems
         public static long Go()
         {
             var all = new List<int>() { 123456789, 12345678, 1234567, 123456 };
-            var largest = 0;
+            long largest = 0;
 
             foreach(var digits in all)
             {
