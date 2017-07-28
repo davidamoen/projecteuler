@@ -1026,9 +1026,21 @@ namespace ProjectEuler
             return (n * ((3 * n) - 1)) / 2;
         }
 
+        public static bool IsTriangular(double n)
+        {
+            double test = (Math.Sqrt(1 + 8 * n) - 1) / 2;
+            return test == ((int)test);
+        }
+
         public static bool IsPentagonal(double n)
         {
             double test = (Math.Sqrt(1 + 24 * n) + 1) / 6;
+            return test == ((int)test);
+        }
+
+        public static bool IsHexagonal(double n)
+        {
+            double test = (Math.Sqrt(1 + 8 * n) + 1) / 4;
             return test == ((int)test);
         }
 
