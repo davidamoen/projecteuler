@@ -1044,6 +1044,12 @@ namespace ProjectEuler
             return test == ((int)test);
         }
 
+        public static bool IsSquare(double n)
+        {
+            double test = Math.Sqrt(n);
+            return test == ((int)test);
+        }
+
         private static Coordinates GetNextCoordinates(Coordinates currentCoordinates, SpiralDirections currentDirection)
         {
 
