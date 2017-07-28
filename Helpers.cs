@@ -1021,6 +1021,17 @@ namespace ProjectEuler
 
         }
 
+        public static double GetPentagonForN(int n)
+        {
+            return (n * ((3 * n) - 1)) / 2;
+        }
+
+        public static bool IsPentagonal(double n)
+        {
+            double test = (Math.Sqrt(1 + 24 * n) + 1) / 6;
+            return test == ((int)test);
+        }
+
         private static Coordinates GetNextCoordinates(Coordinates currentCoordinates, SpiralDirections currentDirection)
         {
 
