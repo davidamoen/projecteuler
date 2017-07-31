@@ -156,8 +156,11 @@ namespace ProjectEuler
             //var fortynine = FortyNine.Go();
             //Console.WriteLine(fortynine);
 
-            var fifty = Fifty.Go();
-            Console.WriteLine(fifty);
+            //var fifty = Fifty.Go();
+            //Console.WriteLine(fifty);
+
+            var fiftyone = FiftyOne.Go();
+            Console.WriteLine(fiftyone);
         }
 
 
