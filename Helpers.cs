@@ -1071,6 +1071,18 @@ namespace ProjectEuler
             return result;
         }
 
+        public static bool ContainTheSameDigits(long n1, long n2)
+        {
+            return Alphabetize(n1.ToString()) == Alphabetize(n2.ToString());
+        }
+
+        public static string Alphabetize(string s)
+        {
+            char[] a = s.ToCharArray();
+            Array.Sort(a);
+            return new string(a);
+        }
+
         private static Coordinates GetNextCoordinates(Coordinates currentCoordinates, SpiralDirections currentDirection)
         {
 
