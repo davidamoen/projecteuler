@@ -171,6 +171,17 @@ namespace ProjectEuler
             return result.OrderBy(x => x).ToList();
         }
 
+        public static List<long> GetPrimesBetweenMandN(int m, int n)
+        {
+            var result = Enumerable.Range(2, n - 3)
+                .AsParallel()
+                .Where(x => IsPrime(x) && x > m)
+                .Select<int, long>(x => x).ToList();
+
+
+            return result.OrderBy(x => x).ToList();
+        }
+
         public static List<string> GetPrimesBelowNAsStrings(int n)
         {
             var result = new List<string>();
@@ -597,7 +608,6 @@ namespace ProjectEuler
 
         }
 
-
         public static List<long> GetAbundantNumbersBelowN(long n) {
 
             List<long> list = new List<long>();
@@ -638,7 +648,6 @@ namespace ProjectEuler
             return list;
 
         }
-
 
         private static List<List<int>> GetPermutations(List<int> list)
         {
@@ -821,7 +830,6 @@ namespace ProjectEuler
             return grid;
 
         }
-
 
         public static List<long> GetDigits2Powers(int power)
         {
@@ -1048,6 +1056,19 @@ namespace ProjectEuler
         {
             double test = Math.Sqrt(n);
             return test == ((int)test);
+        }
+
+        public static long GetNumberFromList(List<int> list)
+        {
+            var multiplier = 1;
+            long result = 0;
+            list.Reverse();
+            foreach(var d in list)
+            {
+                result = result + (multiplier * d);
+                multiplier = multiplier * 10;
+            }
+            return result;
         }
 
         private static Coordinates GetNextCoordinates(Coordinates currentCoordinates, SpiralDirections currentDirection)
