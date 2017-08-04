@@ -48,7 +48,9 @@
     <Compile Include="Problems\Eleven.cs" />
     <Compile Include="Problems\Fifteen.cs" />
     <Compile Include="Problems\Fifty.cs" />
+    <Compile Include="Problems\FiftyFour.cs" />
     <Compile Include="Problems\FiftyOne.cs" />
+    <Compile Include="Problems\FiftyThree.cs" />
     <Compile Include="Problems\FiftyTwo.cs" />
     <Compile Include="Problems\Five.cs" />
     <Compile Include="Problems\Forty.cs" />
@@ -103,6 +105,7 @@
   <ItemGroup>
     <Content Include="Data\p022_names.txt" />
     <Content Include="Data\p042_words.txt" />
+    <Content Include="Data\p054_poker.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

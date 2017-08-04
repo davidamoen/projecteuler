@@ -486,5 +486,242 @@ namespace Tests
             Assert.AreEqual(3, result.Count);
         }
 
+        [TestMethod]
+        public void Test_PokerHands_Flush()
+        {
+            var flush = new PokerHand();
+            flush.Cards.Add(new Card("7D"));
+            flush.Cards.Add(new Card("2D"));
+            flush.Cards.Add(new Card("3D"));
+            flush.Cards.Add(new Card("QD"));
+            flush.Cards.Add(new Card("AD"));
+            Assert.IsTrue(Helpers.IsFlush(flush));
+        }
+
+        [TestMethod]
+        public void Test_PokerHands_NotFlush()
+        {
+            var flush = new PokerHand();
+            flush.Cards.Add(new Card("7H"));
+            flush.Cards.Add(new Card("2D"));
+            flush.Cards.Add(new Card("3D"));
+            flush.Cards.Add(new Card("QD"));
+            flush.Cards.Add(new Card("AD"));
+            Assert.IsFalse(Helpers.IsFlush(flush));
+        }
+
+        [TestMethod]
+        public void Test_PokerHands_FourOfAKind()
+        {
+            var hand = new PokerHand();
+            hand.Cards.Add(new Card("2S"));
+            hand.Cards.Add(new Card("2D"));
+            hand.Cards.Add(new Card("2H"));
+            hand.Cards.Add(new Card("2C"));
+            hand.Cards.Add(new Card("AD"));
+            Assert.IsTrue(Helpers.IsFourOfAKind(hand));
+        }
+
+        [TestMethod]
+        public void Test_PokerHands_NotFourOfAKind()
+        {
+            var hand = new PokerHand();
+            hand.Cards.Add(new Card("2S"));
+            hand.Cards.Add(new Card("2D"));
+            hand.Cards.Add(new Card("2H"));
+            hand.Cards.Add(new Card("4C"));
+            hand.Cards.Add(new Card("AD"));
+            Assert.IsFalse(Helpers.IsFourOfAKind(hand));
+        }
+
+        [TestMethod]
+        public void Test_PokerHands_ThreeOfAKind()
+        {
+            var hand = new PokerHand();
+            hand.Cards.Add(new Card("2S"));
+            hand.Cards.Add(new Card("2D"));
+            hand.Cards.Add(new Card("2H"));
+            hand.Cards.Add(new Card("4C"));
+            hand.Cards.Add(new Card("AD"));
+            Assert.IsTrue(Helpers.IsThreeOfAKind(hand));
+        }
+
+        [TestMethod]
+        public void Test_PokerHands_NotThreeOfAKind()
+        {
+            var hand = new PokerHand();
+            hand.Cards.Add(new Card("2S"));
+            hand.Cards.Add(new Card("2D"));
+            hand.Cards.Add(new Card("5H"));
+            hand.Cards.Add(new Card("4C"));
+            hand.Cards.Add(new Card("AD"));
+            Assert.IsFalse(Helpers.IsThreeOfAKind(hand));
+        }
+
+        [TestMethod]
+        public void Test_PokerHands_TwoOfAKind()
+        {
+            var hand = new PokerHand();
+            hand.Cards.Add(new Card("2S"));
+            hand.Cards.Add(new Card("2D"));
+            hand.Cards.Add(new Card("5H"));
+            hand.Cards.Add(new Card("4C"));
+            hand.Cards.Add(new Card("AD"));
+            Assert.IsTrue(Helpers.IsTwoOfAKind(hand));
+        }
+
+        [TestMethod]
+        public void Test_PokerHands_NotTwoOfAKind()
+        {
+            var hand = new PokerHand();
+            hand.Cards.Add(new Card("9S"));
+            hand.Cards.Add(new Card("2D"));
+            hand.Cards.Add(new Card("5H"));
+            hand.Cards.Add(new Card("4C"));
+            hand.Cards.Add(new Card("AD"));
+            Assert.IsFalse(Helpers.IsTwoOfAKind(hand));
+        }
+
+        [TestMethod]
+        public void Test_PokerHands_Straight()
+        {
+            var hand = new PokerHand();
+            hand.Cards.Add(new Card("2S"));
+            hand.Cards.Add(new Card("6D"));
+            hand.Cards.Add(new Card("4H"));
+            hand.Cards.Add(new Card("3D"));
+            hand.Cards.Add(new Card("5C"));
+            Assert.IsTrue(Helpers.IsStraight(hand));
+        }
+
+        [TestMethod]
+        public void Test_PokerHands_NotStraight()
+        {
+            var hand = new PokerHand();
+            hand.Cards.Add(new Card("AS"));
+            hand.Cards.Add(new Card("6D"));
+            hand.Cards.Add(new Card("4H"));
+            hand.Cards.Add(new Card("3D"));
+            hand.Cards.Add(new Card("5C"));
+            Assert.IsFalse(Helpers.IsStraight(hand));
+        }
+        [TestMethod]
+        public void Test_PokerHands_FullHouse()
+        {
+            var hand = new PokerHand();
+            hand.Cards.Add(new Card("QS"));
+            hand.Cards.Add(new Card("QD"));
+            hand.Cards.Add(new Card("QH"));
+            hand.Cards.Add(new Card("KD"));
+            hand.Cards.Add(new Card("KC"));
+            Assert.IsTrue(Helpers.IsFullHouse(hand));
+        }
+        [TestMethod]
+        public void Test_PokerHands_NotFullHouse()
+        {
+            var hand = new PokerHand();
+            hand.Cards.Add(new Card("QS"));
+            hand.Cards.Add(new Card("QD"));
+            hand.Cards.Add(new Card("QH"));
+            hand.Cards.Add(new Card("KD"));
+            hand.Cards.Add(new Card("AC"));
+            Assert.IsFalse(Helpers.IsFullHouse(hand));
+        }
+
+        [TestMethod]
+        public void Test_PokerHands_TwoPairs()
+        {
+            var hand = new PokerHand();
+            hand.Cards.Add(new Card("QS"));
+            hand.Cards.Add(new Card("QD"));
+            hand.Cards.Add(new Card("KH"));
+            hand.Cards.Add(new Card("AC"));
+            hand.Cards.Add(new Card("KD"));
+            Assert.IsTrue(Helpers.IsTwoPairs(hand));
+        }
+
+        [TestMethod]
+        public void Test_PokerHands_NotTwoPairs()
+        {
+            var hand = new PokerHand();
+            hand.Cards.Add(new Card("JS"));
+            hand.Cards.Add(new Card("QD"));
+            hand.Cards.Add(new Card("KH"));
+            hand.Cards.Add(new Card("AC"));
+            hand.Cards.Add(new Card("KD"));
+            Assert.IsFalse(Helpers.IsTwoPairs(hand));
+        }
+
+        [TestMethod]
+        public void Test_PokerHands_StraightFlush()
+        {
+            var hand = new PokerHand();
+            hand.Cards.Add(new Card("9D"));
+            hand.Cards.Add(new Card("8D"));
+            hand.Cards.Add(new Card("6D"));
+            hand.Cards.Add(new Card("5D"));
+            hand.Cards.Add(new Card("7D"));
+            Assert.IsTrue(Helpers.IsStraightFlush(hand));
+        }
+
+        [TestMethod]
+        public void Test_PokerHands_NotStraightFlush()
+        {
+            var hand = new PokerHand();
+            hand.Cards.Add(new Card("9D"));
+            hand.Cards.Add(new Card("8H"));
+            hand.Cards.Add(new Card("6D"));
+            hand.Cards.Add(new Card("5D"));
+            hand.Cards.Add(new Card("7D"));
+            Assert.IsFalse(Helpers.IsStraightFlush(hand));
+        }
+
+        [TestMethod]
+        public void Test_PokerHands_NotStraightFlush2()
+        {
+            var hand = new PokerHand();
+            hand.Cards.Add(new Card("TD"));
+            hand.Cards.Add(new Card("8D"));
+            hand.Cards.Add(new Card("6D"));
+            hand.Cards.Add(new Card("5D"));
+            hand.Cards.Add(new Card("7D"));
+            Assert.IsFalse(Helpers.IsStraightFlush(hand));
+        }
+
+        [TestMethod]
+        public void Test_PokerHands_GetHighestCard()
+        {
+            var hand = new PokerHand();
+            hand.Cards.Add(new Card("TD"));
+            hand.Cards.Add(new Card("8D"));
+            hand.Cards.Add(new Card("6D"));
+            hand.Cards.Add(new Card("5D"));
+            hand.Cards.Add(new Card("7D"));
+            Assert.AreEqual(10, Helpers.GetHighestCardValue(hand));
+        }
+
+        [TestMethod]
+        public void Test_PokerHands_RoyalStraightFlush()
+        {
+            var hand = new PokerHand();
+            hand.Cards.Add(new Card("TD"));
+            hand.Cards.Add(new Card("AD"));
+            hand.Cards.Add(new Card("QD"));
+            hand.Cards.Add(new Card("JD"));
+            hand.Cards.Add(new Card("KD"));
+            Assert.IsTrue(Helpers.IsRoyalStraightFlush(hand));
+        }
+
+        [TestMethod]
+        public void Test_PokerHands_NotRoyalStraightFlush()
+        {
+            var hand = new PokerHand();
+            hand.Cards.Add(new Card("TD"));
+            hand.Cards.Add(new Card("9D"));
+            hand.Cards.Add(new Card("QD"));
+            hand.Cards.Add(new Card("JD"));
+            hand.Cards.Add(new Card("KD"));
+            Assert.IsFalse(Helpers.IsRoyalStraightFlush(hand));
+        }
     }
 }

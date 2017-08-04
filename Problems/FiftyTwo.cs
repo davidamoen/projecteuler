@@ -12,11 +12,10 @@ namespace ProjectEuler.Problems
         {
             var notFound = true;
             var n = 125874;
-            Console.WriteLine(n);
             while (notFound)
             {
                 n++;
-                if (Helpers.ContainTheSameDigits(n, n*2))
+                if (Helpers.ContainTheSameDigits(n, n * 2))
                 {
                     if (Helpers.ContainTheSameDigits(n, n * 3))
                     {

@@ -288,6 +288,11 @@ namespace ProjectEuler
             return f;
         }
 
+        public static BigInteger SelectRFromN(int n, int r)
+        {
+            return GetFactorial(n) / (GetFactorial(r) * GetFactorial(n - r));
+        }
+
         public static long GetLatticePaths(int right, int down)
         {
             BigInteger topFactorial = GetFactorial(right + down);
@@ -606,6 +611,35 @@ namespace ProjectEuler
 
             return list.OrderBy(n => n).ToList();
 
+        }
+
+        public static List<PokerGame> GetPokerGamesFor54()
+        {
+            var list = new List<PokerGame>();
+
+            //var txt = File.ReadAllText("C:\\projects\\ProjectEuler\\ProjectEuler\\Data\\p054_poker.txt");
+            var txt = File.ReadAllText("C:\\Users\\a7031\\Source\\Repos\\projecteuler\\Data\\p054_poker.txt");
+
+            string[] lines = txt.Split(new string[] { "\n" }, StringSplitOptions.None);
+
+            foreach(var line in lines)
+            {
+                if (line == string.Empty) continue;
+
+                string[] hands = line.Split(' ');
+                var game = new PokerGame();
+                for (var i = 0; i < 5; i++)
+                {
+                    game.Player1.Cards.Add(new Card(hands[i]));
+                }
+                for (var j = 5; j < 10; j++)
+                {
+                    game.Player2.Cards.Add(new Card(hands[j]));
+                }
+                list.Add(game);
+            }
+
+            return list;
         }
 
         public static List<long> GetAbundantNumbersBelowN(long n) {
@@ -1083,6 +1117,114 @@ namespace ProjectEuler
             return new string(a);
         }
 
+        public static bool Player1WinsPokerHand(PokerGame game)
+        {
+            var score1 = GetPokerScore(game.Player1);
+            var score2 = GetPokerScore(game.Player2);
+
+            if (score1 == score2)
+            {
+                if (game.Player1.RankedHighValue == game.Player2.RankedHighValue)
+                {
+                    return GetHighestCardValue(game.Player1) > GetHighestCardValue(game.Player2);
+                }
+                else
+                {
+                    return game.Player1.RankedHighValue > game.Player2.RankedHighValue;
+                }
+            }
+
+            return score1 > score2;
+        }
+
+        public static int GetPokerScore(PokerHand hand)
+        {
+            if (IsRoyalStraightFlush(hand)) return 10;
+            if (IsStraightFlush(hand)) return 9;
+            if (IsFourOfAKind(hand)) return 8;
+            if (IsFullHouse(hand)) return 7;
+            if (IsFlush(hand)) return 6;
+            if (IsStraight(hand)) return 5;
+            if (IsThreeOfAKind(hand)) return 4;
+            if (IsTwoPairs(hand)) return 3;
+            if (IsTwoOfAKind(hand)) return 2;
+
+            hand.RankedHighValue = GetHighestCardValue(hand);
+            return 1;
+        }
+
+        public static bool IsFlush(PokerHand hand)
+        {
+            hand.RankedHighValue = GetHighestCardValue(hand);
+            return hand.Cards.Select(c => c.Suit).Distinct().Count() == 1;
+        }
+
+        public static bool IsFullHouse(PokerHand hand)
+        {
+            hand.RankedHighValue = GetHighestCardValue(hand);
+            return hand.Cards.Select(c => c.Value).Distinct().Count() == 2;
+        }
+
+        public static bool IsFourOfAKind(PokerHand hand)
+        {
+            var most = hand.Cards.GroupBy(c => c.Value).OrderByDescending(grp => grp.Count()).Select(grp => grp.Key).First();
+            hand.RankedHighValue = (int)most;
+            return hand.Cards.Where(c => c.Value == most).Count() == 4;
+        }
+
+        public static bool IsThreeOfAKind(PokerHand hand)
+        {
+            var most = hand.Cards.GroupBy(c => c.Value).OrderByDescending(grp => grp.Count()).Select(grp => grp.Key).First();
+            hand.RankedHighValue = (int)most;
+            return hand.Cards.Where(c => c.Value == most).Count() == 3;
+        }
+
+        public static bool IsTwoOfAKind(PokerHand hand)
+        {
+            var most = hand.Cards.GroupBy(c => c.Value).OrderByDescending(grp => grp.Count()).Select(grp => grp.Key).First();
+            hand.RankedHighValue = (int)most;
+            return hand.Cards.Where(c => c.Value == most).Count() == 2;
+        }
+
+        public static bool IsStraight(PokerHand hand)
+        {
+            var list = new List<int>();
+            foreach(var card in hand.Cards)
+            {
+                list.Add((int)card.Value);
+            }
+            list = list.OrderBy(l => l).ToList();
+            hand.RankedHighValue = GetHighestCardValue(hand);
+            return !list.Select((i, j) => i - j).Distinct().Skip(1).Any();
+        }
+
+        public static bool IsTwoPairs(PokerHand hand)
+        {
+            var groups = hand.Cards.GroupBy(c => c.Value).OrderByDescending(grp => grp.Count()).Select(grp => grp.Key).ToList();
+            var onePair = hand.Cards.Where(c => c.Value == groups[0]).Count() == 2;
+            var twoPair = hand.Cards.Where(c => c.Value == groups[1]).Count() == 2;
+            hand.RankedHighValue = GetHighestCardValue(hand);
+            return onePair && twoPair;
+        }
+
+        public static bool IsStraightFlush(PokerHand hand)
+        {
+            hand.RankedHighValue = GetHighestCardValue(hand);
+            return IsStraight(hand) && IsFlush(hand);
+        }
+
+        public static int GetHighestCardValue(PokerHand hand)
+        {
+            return (int)hand.Cards.OrderByDescending(c => c.Value).First().Value;
+        }
+
+
+
+        public static bool IsRoyalStraightFlush(PokerHand hand)
+        {
+            return IsStraight(hand) && IsFlush(hand) && GetHighestCardValue(hand) == (int)CardValue.Ace;
+        }
+
         private static Coordinates GetNextCoordinates(Coordinates currentCoordinates, SpiralDirections currentDirection)
         {
 
@@ -1159,4 +1301,137 @@ namespace ProjectEuler
         public int y { get; set; }
     }
 
+    public enum CardValue
+    {
+        Deuce = 2,
+        Three = 3,
+        Four = 4,
+        Five = 5,
+        Six = 6,
+        Seven = 7,
+        Eight = 8,
+        Nine = 9,
+        Ten = 10,
+        Jack = 11,
+        Queen = 12,
+        King = 13,
+        Ace = 14
+    }
+
+    public enum CardSuit
+    {
+        Hearts,
+        Spades,
+        Diamonds,
+        Clubs
+    }
+
+    public enum PokerHands
+    {
+        None = 1,
+        OnePair = 2,
+        TwoPairs = 3,
+        ThreeOfAKind = 4,
+        Straight = 5,
+        Flush = 6,
+        FullHouse = 7,
+        FourOfAKind = 8,
+        StraightFlush = 9,
+        RoyalFlush = 10
+    }
+
+    public class Card
+    {
+        public CardValue Value { get; set; }
+        public CardSuit Suit { get; set; }
+
+        public Card(string code)
+        {
+            switch (code.Substring(0,1))
+            {
+                case "2":
+                    Value = CardValue.Deuce;
+                    break;
+                case "3":
+                    Value = CardValue.Three;
+                    break;
+                case "4":
+                    Value = CardValue.Four;
+                    break;
+                case "5":
+                    Value = CardValue.Five;
+                    break;
+                case "6":
+                    Value = CardValue.Six;
+                    break;
+                case "7":
+                    Value = CardValue.Seven;
+                    break;
+                case "8":
+                    Value = CardValue.Eight;
+                    break;
+                case "9":
+                    Value = CardValue.Nine;
+                    break;
+                case "T":
+                    Value = CardValue.Ten;
+                    break;
+                case "J":
+                    Value = CardValue.Jack;
+                    break;
+                case "Q":
+                    Value = CardValue.Queen;
+                    break;
+                case "K":
+                    Value = CardValue.King;
+                    break;
+                case "A":
+                    Value = CardValue.Ace;
+                    break;
+            }
+
+            switch (code.Substring(1, 1))
+            {
+                case "S":
+                    Suit = CardSuit.Spades;
+                    break;
+                case "H":
+                    Suit = CardSuit.Hearts;
+                    break;
+                case "C":
+                    Suit = CardSuit.Clubs;
+                    break;
+                case "D":
+                    Suit = CardSuit.Diamonds;
+                    break;
+            }
+
+        }
+    }
+
+    public class PokerHand
+    {
+        public List<Card> Cards { get; set; }
+
+        public int RankedHighValue { get; set; }
+
+        public PokerHand()
+        {
+            Cards = new List<Card>();
+        }
+    }
+
+    public class PokerGame
+    {
+        public PokerHand Player1 { get; set; }
+        public PokerHand Player2 { get; set; }
+
+        public PokerGame()
+        {
+            Player1 = new PokerHand();
+            Player2 = new PokerHand();
+        }
+
+
+    }
 }
