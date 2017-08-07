@@ -1242,6 +1242,18 @@ namespace ProjectEuler
             return true;
         }
 
+        public static long GetDigitalSum(BigInteger n)
+        {
+            long sum = 0;
+            var arr = n.ToString().ToArray();
+
+            foreach(var a in arr)
+            {
+                sum = sum + long.Parse(a.ToString());
+            }
+            return sum;
+        }
+
         private static Coordinates GetNextCoordinates(Coordinates currentCoordinates, SpiralDirections currentDirection)
         {
 
