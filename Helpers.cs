@@ -60,10 +60,15 @@ namespace ProjectEuler
 
         public static bool IsPalindrome(long n)
         {
-
             var nStr = n.ToString();
             var nStrRev = new string(nStr.Reverse().ToArray());
+            return nStr == nStrRev;
+        }
 
+        public static bool IsPalindrome(BigInteger n)
+        {
+            var nStr = n.ToString();
+            var nStrRev = new string(nStr.Reverse().ToArray());
             return nStr == nStrRev;
         }
 
@@ -1218,11 +1223,23 @@ namespace ProjectEuler
             return (int)hand.Cards.OrderByDescending(c => c.Value).First().Value;
         }
 
-
-
         public static bool IsRoyalStraightFlush(PokerHand hand)
         {
             return IsStraight(hand) && IsFlush(hand) && GetHighestCardValue(hand) == (int)CardValue.Ace;
+        }
+
+        public static bool IsLychrel(long n)
+        {
+            var idx = 0;
+            BigInteger bigN = new BigInteger(n);
+            while (idx < 50)
+            {
+                BigInteger revN = BigInteger.Parse(new string(bigN.ToString().Reverse().ToArray()));
+                bigN = bigN + revN;
+                if (IsPalindrome(bigN)) return false;
+                idx++;
+            }
+            return true;
         }
 
         private static Coordinates GetNextCoordinates(Coordinates currentCoordinates, SpiralDirections currentDirection)

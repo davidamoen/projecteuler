@@ -168,8 +168,11 @@ namespace ProjectEuler
             //var fiftythree = FiftyThree.Go();
             //Console.WriteLine(fiftythree);
 
-            var fiftyfour = FiftyFour.Go();
-            Console.WriteLine(fiftyfour);
+            //var fiftyfour = FiftyFour.Go();
+            //Console.WriteLine(fiftyfour);
+
+            var fiftyfive = FiftyFive.Go();
+            Console.WriteLine(fiftyfive);
         }
 
 
