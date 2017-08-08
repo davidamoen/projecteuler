@@ -819,6 +819,48 @@ namespace ProjectEuler
             return total;
         }
 
+        public static List<int> GetNumberSpiralDiagonalValues(List<List<int>> grid)
+        {
+            var list = new List<int>();
+            // first do the diagonal from upper left to lower right
+            for (var i = 0; i < grid.Count; i++)
+            {
+                list.Add(grid[i][i]);
+            }
+
+            // now do the diagonal from lower left to upper right
+            for (var i = 0; i < grid.Count; i++)
+            {
+                var yCoord = grid.Count - 1 - i;
+                list.Add(grid[yCoord][i]);
+            }
+            return list.Distinct().OrderBy(l => l).ToList();
+        }
+
+        public static List<int> GetNumberSpiralCornerValues(List<List<int>> grid)
+        {
+            var list = new List<int>();
+            var dim = grid[0].Count;
+            // first do the diagonal from upper left to lower right
+            list.Add(grid[0][0]);
+            list.Add(grid[0][dim - 1]);
+            list.Add(grid[dim - 1][dim - 1]);
+            list.Add(grid[dim - 1][0]);
+
+            return list;
+        }
+
+        public static List<int> GetNewDiagonalValuesForGrid(int lastValue, int currentDimension)
+        {
+            var list = new List<int>();
+            for(var i = 1; i < 5; i++)
+            {
+                list.Add(lastValue + (i * (currentDimension + 1)));
+            }
+            return list;
+        }
+
+
         public static List<List<int>> GetNumberSpriralGrid(int dimension)
         {
             // build an empty grid
@@ -837,7 +879,6 @@ namespace ProjectEuler
 
             // get the mid point
             var mid = (dimension / 2) + 1;
-
 
             var currentCoordinates = new Coordinates { x = mid - 1, y = mid - 1 };
             var currentDirection = SpiralDirections.up;
@@ -864,10 +905,7 @@ namespace ProjectEuler
                 }
                 currentValue++;
             }
-
-
             return grid;
-
         }
 
         public static List<long> GetDigits2Powers(int power)
