@@ -51,6 +51,7 @@
     <Compile Include="Problems\FiftyEight.cs" />
     <Compile Include="Problems\FiftyFive.cs" />
     <Compile Include="Problems\FiftyFour.cs" />
+    <Compile Include="Problems\FiftyNine.cs" />
     <Compile Include="Problems\FiftyOne.cs" />
     <Compile Include="Problems\FiftySeven.cs" />
     <Compile Include="Problems\FiftySix.cs" />
@@ -110,6 +111,7 @@
     <Content Include="Data\p022_names.txt" />
     <Content Include="Data\p042_words.txt" />
     <Content Include="Data\p054_poker.txt" />
+    <Content Include="Data\p059_cipher.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

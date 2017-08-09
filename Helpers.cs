@@ -647,6 +647,22 @@ namespace ProjectEuler
             return list;
         }
 
+        public static List<int> GetIntegersFor59()
+        {
+            var list = new List<int>();
+
+            // var txt = File.ReadAllText("C:\\projects\\ProjectEuler\\ProjectEuler\\Data\\p059_cipher.txt");
+            var txt = File.ReadAllText("C:\\Users\\a7031\\Source\\Repos\\projecteuler\\Data\\p059_cipher.txt");
+            var arr = txt.Split(',');
+
+            foreach (var i in arr)
+            {
+                list.Add(int.Parse(i));
+            }
+
+            return list;
+        }
+
         public static List<long> GetAbundantNumbersBelowN(long n) {
 
             List<long> list = new List<long>();
@@ -859,7 +875,6 @@ namespace ProjectEuler
             }
             return list;
         }
-
 
         public static List<List<int>> GetNumberSpriralGrid(int dimension)
         {

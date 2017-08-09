@@ -180,8 +180,11 @@ namespace ProjectEuler
             //var fiftyseven = FiftySeven.Go();
             //Console.WriteLine(fiftyseven);
 
-            var fiftyeight = FiftyEight.Go();
-            Console.WriteLine(fiftyeight);
+            //var fiftyeight = FiftyEight.Go();
+            //Console.WriteLine(fiftyeight);
+
+            var fiftynine = FiftyNine.Go();
+            Console.WriteLine(fiftynine);
         }
     }
 }
