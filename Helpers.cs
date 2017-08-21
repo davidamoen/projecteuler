@@ -1144,6 +1144,18 @@ namespace ProjectEuler
             return test == ((int)test);
         }
 
+        public static bool IsHeptagonal(double n)
+        {
+            double test = (Math.Sqrt(9 + 40 * n) + 3) / 10;
+            return test == ((int)test);
+        }
+
+        public static bool IsOctagonal(double n)
+        {
+            double test = (Math.Sqrt(1 + 3 * n) + 1) / 3;
+            return test == ((int)test);
+        }
+
         public static bool IsSquare(double n)
         {
             double test = Math.Sqrt(n);
