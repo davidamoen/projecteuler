@@ -972,7 +972,25 @@ namespace ProjectEuler
             return list;
         }
 
+        public static List<int> GetDigits(BigInteger num)
+        {
+            var list = new List<int>();
+            var numStr = num.ToString();
+            char[] digits = numStr.ToCharArray();
+            foreach (char c in digits)
+            {
+                list.Add(int.Parse(c.ToString()));
+            }
+            return list;
+        }
+
         public static List<List<int>> GetAllPermutationsOfDigits(int num)
+        {
+            var list = GetDigits(num);
+            return GetPermutations(list);
+        }
+
+        public static List<List<int>> GetAllPermutationsOfDigits(BigInteger num)
         {
             var list = GetDigits(num);
             return GetPermutations(list);
@@ -1154,6 +1172,20 @@ namespace ProjectEuler
         {
             double test = (Math.Sqrt(1 + 3 * n) + 1) / 3;
             return test == ((int)test);
+        }
+
+        public static bool IsCube(double n)
+        {
+            double test = (Math.Pow(n, (double)1/3));
+            return test == ((int)test);
+        }
+
+        public static bool IsPermutation(string a, string b)
+        {
+            var sortA = String.Concat(a.OrderBy(s => s));
+            var sortB = String.Concat(b.OrderBy(s => s));
+
+            return sortA == sortB;
         }
 
         public static bool IsSquare(double n)
