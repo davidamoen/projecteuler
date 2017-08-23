@@ -1180,6 +1180,13 @@ namespace ProjectEuler
             return test == ((int)test);
         }
 
+        public static bool IsPowerOfN(double number, int n)
+        {
+            double test = (Math.Pow(number, 1.0 / n));
+            test = Math.Round(test, 13);
+            return test == ((int)test);
+        }
+
         public static bool IsPermutation(string a, string b)
         {
             var sortA = String.Concat(a.OrderBy(s => s));
