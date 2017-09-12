@@ -663,6 +663,52 @@ namespace ProjectEuler
             return list;
         }
 
+        public static List<List<long>> GetTriangleFor67()
+        {
+            var list = new List<List<long>>();
+
+            // var txt = File.ReadAllText("C:\\projects\\ProjectEuler\\ProjectEuler\\Data\\p022_names.txt");
+            var txt = File.ReadAllText("C:\\Users\\a7031\\Source\\Repos\\projecteuler\\Data\\p067_triangle.txt");
+
+            // string[] lines = txt.Split(new string[] { "\n" }, StringSplitOptions.None);
+
+            foreach(var line in txt.Split(new string[] { "\n" }, StringSplitOptions.None))
+            {
+                if (line == string.Empty) continue;
+                var lineList = new List<long>();
+                foreach(var item in line.Split(' ').ToList())
+                {
+                    lineList.Add(long.Parse(item));
+                }
+                list.Add(lineList);
+            }
+
+            return list;
+
+        }
+
+        public static List<List<int>> GetIntegersFor79()
+        {
+            var list = new List<List<int>>();
+            var testlist = new List<int>();
+
+            // var txt = File.ReadAllText("C:\\projects\\ProjectEuler\\ProjectEuler\\Data\\p059_cipher.txt");
+            var txt = File.ReadAllText("C:\\Users\\a7031\\Source\\Repos\\projecteuler\\Data\\p079_keylog.txt");
+            foreach (var line in txt.Split(new string[] { "\n" }, StringSplitOptions.None))
+            {
+                if (line == string.Empty) continue;
+
+                var i = int.Parse(line);
+                if (testlist.Where(l => l == i).ToList().Count == 0) // there are dupes in the list, don't include those
+                {
+                    testlist.Add(i);
+                    list.Add(GetDigits(i));
+                }
+            }
+
+            return list;
+        }
+
         public static List<long> GetAbundantNumbersBelowN(long n) {
 
             List<long> list = new List<long>();
