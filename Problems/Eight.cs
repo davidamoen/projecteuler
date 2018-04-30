@@ -15,7 +15,6 @@ namespace ProjectEuler.Problems
 
         public static long GetLargestProduct(int sampleSize)
         {
-            var largest = 0;
             var numbers = GetNumber();
             long largestProduct = 0;
 

@@ -5,6 +5,7 @@ using ProjectEuler;
 using System.Collections.Generic;
 using ProjectEuler.Problems;
 using System.Numerics;
+using ProjectEuler.Models;
 
 namespace Tests
 {
@@ -248,12 +249,13 @@ namespace Tests
         [TestMethod]
         public void Test_GetMaxPathSum()
         {
-            var grid = new List<List<long>>();
-
-            grid.Add(new List<long>() { 3 });
-            grid.Add(new List<long>() { 7, 4 });
-            grid.Add(new List<long>() { 2, 4, 6 });
-            grid.Add(new List<long>() { 8, 5, 9, 3 });
+            var grid = new List<List<long>>
+            {
+                new List<long>() { 3 },
+                new List<long>() { 7, 4 },
+                new List<long>() { 2, 4, 6 },
+                new List<long>() { 8, 5, 9, 3 }
+            };
 
             Assert.AreEqual(23, Helpers.GetMaximumPathSum(grid));
 
@@ -273,15 +275,15 @@ namespace Tests
         public void Test_GetAmicablePair()
         {
 
-            Assert.AreEqual(284, Helpers.GetAmicablePair(220).b);
+            Assert.AreEqual(284, Helpers.GetAmicablePair(220).B);
 
-            Assert.AreEqual(1210, Helpers.GetAmicablePair(1184).b);
+            Assert.AreEqual(1210, Helpers.GetAmicablePair(1184).B);
 
-            Assert.AreEqual(2924, Helpers.GetAmicablePair(2620).b);
+            Assert.AreEqual(2924, Helpers.GetAmicablePair(2620).B);
 
-            Assert.AreEqual(5564, Helpers.GetAmicablePair(5020).b);
+            Assert.AreEqual(5564, Helpers.GetAmicablePair(5020).B);
 
-            Assert.AreEqual(0, Helpers.GetAmicablePair(100).b);
+            Assert.AreEqual(0, Helpers.GetAmicablePair(100).B);
 
         }
 
@@ -722,6 +724,27 @@ namespace Tests
             hand.Cards.Add(new Card("JD"));
             hand.Cards.Add(new Card("KD"));
             Assert.IsFalse(Helpers.IsRoyalStraightFlush(hand));
+        }
+
+        [TestMethod]
+        public void Test_PointInTriangle()
+        {
+            var origin = new Coordinate(0, 0);
+            var tri1 = new Triangle
+            {
+                A = new Coordinate(-340, 495),
+                B = new Coordinate(-153, -910),
+                C = new Coordinate(835, -947)
+            };
+            Assert.IsTrue(Helpers.PointInTriangle(origin, tri1));
+
+            var tri2 = new Triangle
+            {
+                A = new Coordinate(-175, 41),
+                B = new Coordinate(-421, -714),
+                C = new Coordinate(574, -645)
+            };
+            Assert.IsFalse(Helpers.PointInTriangle(origin, tri2));
         }
     }
 }

@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Helpers.cs" />
+    <Compile Include="Models\Triangle.cs" />
     <Compile Include="Problems\Eight.cs" />
     <Compile Include="Problems\Eighteen.cs" />
     <Compile Include="Problems\Eleven.cs" />
@@ -72,7 +73,9 @@
     <Compile Include="Problems\Fourteen.cs" />
     <Compile Include="Problems\Nine.cs" />
     <Compile Include="Problems\Nineteen.cs" />
+    <Compile Include="Problems\NinetySeven.cs" />
     <Compile Include="Problems\One.cs" />
+    <Compile Include="Problems\OneHundredTwo.cs" />
     <Compile Include="Problems\Seven.cs" />
     <Compile Include="Problems\Seventeen.cs" />
     <Compile Include="Problems\SeventyNine.cs" />
@@ -120,6 +123,7 @@
     <Content Include="Data\p059_cipher.txt" />
     <Content Include="Data\p067_triangle.txt" />
     <Content Include="Data\p079_keylog.txt" />
+    <Content Include="Data\p102_triangles.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

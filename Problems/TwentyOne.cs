@@ -21,10 +21,10 @@ namespace ProjectEuler.Problems
 
                 var pair = Helpers.GetAmicablePair(i);
 
-                if (pair.b != 0 && pair.a < limit && pair.b < limit)
+                if (pair.B != 0 && pair.A < limit && pair.B < limit)
                 {
-                    list.Add(pair.a);
-                    list.Add(pair.b);
+                    list.Add(pair.A);
+                    list.Add(pair.B);
                 }
             }
 

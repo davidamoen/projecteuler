@@ -12,13 +12,15 @@ namespace ProjectEuler.Problems
         {
             var perms = Helpers.GetAllPermutationsOfDigits(987654321);
 
-            var splits = new List<List<int>>();
-            splits.Add(new List<int>() { 1, 2, 3, 3 });
-            splits.Add(new List<int>() { 1, 3, 5 });
-            splits.Add(new List<int>() { 2, 2, 2, 3 });
-            splits.Add(new List<int>() { 2, 3, 4 });
-            splits.Add(new List<int>() { 3, 3, 3 });
-            splits.Add(new List<int>() { 4, 5 });
+            var splits = new List<List<int>>
+            {
+                new List<int>() { 1, 2, 3, 3 },
+                new List<int>() { 1, 3, 5 },
+                new List<int>() { 2, 2, 2, 3 },
+                new List<int>() { 2, 3, 4 },
+                new List<int>() { 3, 3, 3 },
+                new List<int>() { 4, 5 }
+            };
 
             foreach (var perm in perms)
             {
@@ -37,25 +39,17 @@ namespace ProjectEuler.Problems
 
                     Console.WriteLine("List: " + String.Join(",", list.ToArray()));
 
-                    var isPandigital = true;
                     var n = 2;
                     var multiplier = list[0];
                     foreach (var item in list.GetRange(1, list.Count-1))
                     {
                         if ((multiplier * n) != item)
                         {
-                            isPandigital = false;
                             break;
                         }
 
                         n++;
                     }
-
-                    if (isPandigital)
-                    {
-                        var foo = 1;
-                    }
-
                 }
             }
 

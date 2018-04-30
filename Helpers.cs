@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Numerics;
 using System.IO;
 using System.Collections;
+using ProjectEuler.Models;
 
 namespace ProjectEuler
 {
@@ -560,19 +561,19 @@ namespace ProjectEuler
 
         public static AmicablePair GetAmicablePair(long n)
         {
-            var pair = new AmicablePair();
+            var pair = new AmicablePair
+            {
+                A = n
+            };
 
-            pair.a = n;
+            long dOfA = AmicableD(pair.A);
 
 
-            long dOfA = AmicableD(pair.a);
-
-
-            if (dOfA == pair.a) return pair;
+            if (dOfA == pair.A) return pair;
 
             long dOfB = AmicableD(dOfA);
 
-            if (pair.a == dOfB) pair.b = dOfA;
+            if (pair.A == dOfB) pair.B = dOfA;
 
             return pair;
         }
@@ -685,6 +686,30 @@ namespace ProjectEuler
 
             return list;
 
+        }
+
+        public static List<Triangle> GetTrianglesFor102()
+        {
+            var list = new List<Triangle>();
+
+            // var txt = File.ReadAllText("C:\\projects\\ProjectEuler\\ProjectEuler\\Data\\p022_names.txt");
+            // var txt = File.ReadAllText("C:\\Users\\a7031\\Source\\Repos\\projecteuler\\Data\\p067_triangle.txt");
+            var txt = File.ReadAllText("C:\\Dave_Source\\projecteuler\\Data\\p102_triangles.txt");
+
+            foreach (var line in txt.Split(new string[] { "\n" }, StringSplitOptions.None))
+            {
+                if (line == string.Empty) continue;
+                var parts = line.Split(',').ToList();
+
+                list.Add(new Triangle()
+                {
+                    A = new Coordinate(int.Parse(parts[0]), int.Parse(parts[1])),
+                    B = new Coordinate(int.Parse(parts[2]), int.Parse(parts[3])),
+                    C = new Coordinate(int.Parse(parts[4]), int.Parse(parts[5])),
+                });
+            }
+
+            return list;
         }
 
         public static List<List<int>> GetIntegersFor79()
@@ -941,10 +966,10 @@ namespace ProjectEuler
             // get the mid point
             var mid = (dimension / 2) + 1;
 
-            var currentCoordinates = new Coordinates { x = mid - 1, y = mid - 1 };
+            var currentCoordinates = new Coordinates { X = mid - 1, Y = mid - 1 };
             var currentDirection = SpiralDirections.up;
 
-            grid[currentCoordinates.x][currentCoordinates.y] = 1;
+            grid[currentCoordinates.X][currentCoordinates.Y] = 1;
 
             var currentValue = 2;
             while (currentValue <= totalCells)
@@ -953,15 +978,15 @@ namespace ProjectEuler
                 var desiredCoordinates = GetNextCoordinates(currentCoordinates, GetNextDirection(currentDirection));
                 var currentCourseCooredinates = GetNextCoordinates(currentCoordinates, currentDirection);
 
-                if (grid[desiredCoordinates.x][desiredCoordinates.y] == 0)
+                if (grid[desiredCoordinates.X][desiredCoordinates.Y] == 0)
                 {
-                    grid[desiredCoordinates.x][desiredCoordinates.y] = currentValue;
+                    grid[desiredCoordinates.X][desiredCoordinates.Y] = currentValue;
                     currentCoordinates = desiredCoordinates;
                     currentDirection = GetNextDirection(currentDirection);
                 }
                 else
                 {
-                    grid[currentCourseCooredinates.x][currentCourseCooredinates.y] = currentValue;
+                    grid[currentCourseCooredinates.X][currentCourseCooredinates.Y] = currentValue;
                     currentCoordinates = currentCourseCooredinates;
                 }
                 currentValue++;
@@ -1404,23 +1429,38 @@ namespace ProjectEuler
             return sum;
         }
 
+        public static double Sign(Coordinate c1, Coordinate c2, Coordinate c3)
+        {
+            return (c1.X - c3.X) * (c2.Y - c3.Y) - (c2.X - c3.X) * (c1.Y - c3.Y);
+        }
+
+        public static bool PointInTriangle(Coordinate pt, Triangle t)
+        {
+            var b1 = Sign(pt, t.A, t.B) < 0.0f;
+            var b2 = Sign(pt, t.B, t.C) < 0.0f;
+            var b3 = Sign(pt, t.C, t.A) < 0.0f;
+
+            return ((b1 == b2) && (b2 == b3));
+        }
+
+
         private static Coordinates GetNextCoordinates(Coordinates currentCoordinates, SpiralDirections currentDirection)
         {
 
-            var newCoordinates = new Coordinates { x = currentCoordinates.x, y = currentCoordinates.y };
+            var newCoordinates = new Coordinates { X = currentCoordinates.X, Y = currentCoordinates.Y };
             switch (currentDirection)
             {
                 case SpiralDirections.right:
-                    newCoordinates.x++;
+                    newCoordinates.X++;
                     break;
                 case SpiralDirections.down:
-                    newCoordinates.y++;
+                    newCoordinates.Y++;
                     break;
                 case SpiralDirections.left:
-                    newCoordinates.x--;
+                    newCoordinates.X--;
                     break;
                 case SpiralDirections.up:
-                    newCoordinates.y--;
+                    newCoordinates.Y--;
                     break;
             }
             return newCoordinates;
@@ -1470,14 +1510,14 @@ namespace ProjectEuler
 
     public class AmicablePair
     {
-        public long a { get; set; }
-        public long b { get; set; }
+        public long A { get; set; }
+        public long B { get; set; }
     }
 
     public class Coordinates
     {
-        public int x { get; set; }
-        public int y { get; set; }
+        public int X { get; set; }
+        public int Y { get; set; }
     }
 
     public enum CardValue
