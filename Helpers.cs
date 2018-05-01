@@ -775,7 +775,7 @@ namespace ProjectEuler
 
         }
 
-        private static List<List<int>> GetPermutations(List<int> list)
+        public static List<List<int>> GetPermutations(List<int> list)
         {
             var returnList = new List<List<int>>();
             var listCopy = new List<int>(list);
@@ -1443,6 +1443,26 @@ namespace ProjectEuler
             return ((b1 == b2) && (b2 == b3));
         }
 
+        public static bool IsCorrectForm_For_206(BigInteger n)
+        {
+            var nStr = n.ToString();
+            var arr = nStr.ToArray();
+
+            if (arr[0] == '1'
+                && arr[2] == '2'
+                && arr[4] == '3'
+                && arr[6] == '4'
+                && arr[8] == '5'
+                && arr[10] == '6'
+                && arr[12] == '7'
+                && arr[14] == '8'
+                && arr[16] == '9'
+                )
+            {
+                return true;
+            }
+            else return false;
+        }
 
         private static Coordinates GetNextCoordinates(Coordinates currentCoordinates, SpiralDirections currentDirection)
         {

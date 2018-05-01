@@ -110,6 +110,7 @@
     <Compile Include="Problems\TwentyThree.cs" />
     <Compile Include="Problems\TwentyTwo.cs" />
     <Compile Include="Problems\Two.cs" />
+    <Compile Include="Problems\TwoHundredSix.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

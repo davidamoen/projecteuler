@@ -746,5 +746,21 @@ namespace Tests
             };
             Assert.IsFalse(Helpers.PointInTriangle(origin, tri2));
         }
+
+        [TestMethod]
+        public void Test_IsCorrectForm_For_206()
+        {
+            long correct = 1424344454647484940;
+            Assert.IsTrue(Helpers.IsCorrectForm_For_206(correct));
+
+            long incorrect = 1424344454447484940;
+            Assert.IsFalse(Helpers.IsCorrectForm_For_206(incorrect));
+
+            correct = 1424304454647784900;
+            Assert.IsTrue(Helpers.IsCorrectForm_For_206(correct));
+
+            incorrect = 1424344454440484900;
+            Assert.IsFalse(Helpers.IsCorrectForm_For_206(incorrect));
+        }
     }
 }
