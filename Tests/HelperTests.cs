@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using ProjectEuler.Problems;
 using System.Numerics;
 using ProjectEuler.Models;
+using System.Linq;
 
 namespace Tests
 {
@@ -761,6 +762,34 @@ namespace Tests
 
             incorrect = 1424344454440484900;
             Assert.IsFalse(Helpers.IsCorrectForm_For_206(incorrect));
+        }
+
+        [TestMethod]
+        public void Test_IsPrimeGenerating()
+        {
+            //Assert.IsTrue(Helpers.IsPrimeGenerating(30));
+
+            //Assert.IsTrue(Helpers.IsPrimeGenerating(42));
+
+            //Assert.IsFalse(Helpers.IsPrimeGenerating(32));
+
+            //Assert.IsFalse(Helpers.IsPrimeGenerating(35));
+        }
+
+        [TestMethod]
+        public void Test_GetSquareDigitChain()
+        {
+            var chain = Helpers.GetSquareDigitChain(new List<int>() { 44 });
+            Assert.AreEqual(5, chain.Count);
+            Assert.AreEqual(1, chain.Last());
+
+            chain = Helpers.GetSquareDigitChain(new List<int>() { 85 });
+            Assert.AreEqual(2, chain.Count);
+            Assert.AreEqual(89, chain.Last());
+
+            chain = Helpers.GetSquareDigitChain(new List<int>() { 145 });
+            Assert.AreEqual(8, chain.Count);
+            Assert.AreEqual(89, chain.Last());
         }
     }
 }

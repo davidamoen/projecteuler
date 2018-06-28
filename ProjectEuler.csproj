@@ -74,6 +74,7 @@
     <Compile Include="Problems\Nine.cs" />
     <Compile Include="Problems\Nineteen.cs" />
     <Compile Include="Problems\NinetySeven.cs" />
+    <Compile Include="Problems\NinetyTwo.cs" />
     <Compile Include="Problems\One.cs" />
     <Compile Include="Problems\OneHundredTwo.cs" />
     <Compile Include="Problems\Seven.cs" />
@@ -98,6 +99,7 @@
     <Compile Include="Problems\ThirtyThree.cs" />
     <Compile Include="Problems\ThirtyTwo.cs" />
     <Compile Include="Problems\Three.cs" />
+    <Compile Include="Problems\ThreeFiftySeven.cs" />
     <Compile Include="Problems\Twelve.cs" />
     <Compile Include="Problems\Twenty.cs" />
     <Compile Include="Problems\TwentyEight.cs" />

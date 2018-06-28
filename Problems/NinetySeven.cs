@@ -13,7 +13,9 @@ namespace ProjectEuler.Problems
         {
             long mod = 10000000000;
             BigInteger result = 28433 * BigInteger.ModPow(2, 7830457, mod) + 1;
-            return 0;
+            result %= mod;
+
+            return (long)result;
         }
     }
 }

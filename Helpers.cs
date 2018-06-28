@@ -1464,6 +1464,74 @@ namespace ProjectEuler
             else return false;
         }
 
+        public static List<int> GetSquareDigitChain(List<int> chain)
+         {
+            var digits = GetDigits(chain.Last());
+            var nextNumber = 0;
+
+            foreach(var digit in digits)
+            {
+                nextNumber += digit * digit;
+            }
+
+            chain.Add(nextNumber);
+            
+            if (chain.Last() == 1 || chain.Last() == 89)
+            {
+                return chain;
+            }
+            else
+            {
+                return GetSquareDigitChain(chain);
+            }
+        }
+
+        public static int GetNextSquareDigit(int digit)
+        {
+            var digits = GetDigits(digit);
+            var nextNumber = 0;
+
+            foreach (var d in digits)
+            {
+                nextNumber += d * d;
+            }
+
+            return nextNumber;
+        }
+
+        public static bool IsPrimeGenerating(long n, bool[] arr)
+        {
+            for (var d = 1; d < n; d++)
+            {
+                if (n % d == 0 )
+                {
+                    if (!arr[d+n/d])
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
+
+            //Console.WriteLine($"Examining: {n}");
+            //var divisors = GetFactorsOfN(n);
+            //var len = divisors.Count;
+            //var result = true;
+
+            //for (var i = 0; i < len; i += 2)
+            //{
+            //    var d = divisors[i];
+            //    var test = d + n / d;
+            //    if (!arr[test])
+            //    {
+            //        result = false;
+            //        break;
+            //    }
+            //}
+
+            //return result;
+        }
+
         private static Coordinates GetNextCoordinates(Coordinates currentCoordinates, SpiralDirections currentDirection)
         {
 
