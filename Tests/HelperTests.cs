@@ -791,5 +791,35 @@ namespace Tests
             Assert.AreEqual(8, chain.Count);
             Assert.AreEqual(89, chain.Last());
         }
+
+        [TestMethod]
+        public void Test_IsIncreasingNumber()
+        {
+            Assert.IsTrue(Helpers.IsIncreasingNumber(134468));
+
+            Assert.IsFalse(Helpers.IsIncreasingNumber(66420));
+
+            Assert.IsFalse(Helpers.IsIncreasingNumber(155349));
+        }
+
+        [TestMethod]
+        public void Test_IsDecreasingNumber()
+        {
+            Assert.IsFalse(Helpers.IsDecreasingNumber(134468));
+
+            Assert.IsTrue(Helpers.IsDecreasingNumber(66420));
+
+            Assert.IsFalse(Helpers.IsDecreasingNumber(155349));
+        }
+
+        [TestMethod]
+        public void Test_IsBouncyNumber()
+        {
+            Assert.IsFalse(Helpers.IsBouncyNumber(134468));
+
+            Assert.IsFalse(Helpers.IsBouncyNumber(66420));
+
+            Assert.IsTrue(Helpers.IsBouncyNumber(155349));
+        }
     }
 }

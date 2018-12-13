@@ -1547,6 +1547,59 @@ namespace ProjectEuler
             //return result;
         }
 
+        public static bool IsBouncyNumber(long n)
+        {
+            return !IsIncreasingNumber(n) && !IsDecreasingNumber(n);
+        }
+
+        public static bool IsIncreasingNumber(long n)
+        {
+            var nStr = n.ToString();
+            var len = nStr.Length;
+            char[] characters = nStr.ToCharArray();
+            int previous = 10;
+            var i = len - 1;
+            var c = int.Parse(characters[i].ToString());
+            while (i >= 0)
+            {
+                if (c > previous) return false;
+
+                i--;
+                previous = c;
+
+                if (i >= 0)
+                {
+                    c = int.Parse(characters[i].ToString());
+                }
+            }
+
+            return true;
+        }
+
+        public static bool IsDecreasingNumber(long n)
+        {
+            var nStr = n.ToString();
+            var len = nStr.Length;
+            char[] characters = nStr.ToCharArray();
+            int previous = 0;
+            var i = len - 1;
+            var c = int.Parse(characters[i].ToString());
+            while (i >= 0)
+            {
+                if (c < previous) return false;
+
+                i--;
+                previous = c;
+
+                if (i >= 0)
+                {
+                    c = int.Parse(characters[i].ToString());
+                }
+            }
+
+            return true;
+        }
+
         private static Coordinates GetNextCoordinates(Coordinates currentCoordinates, SpiralDirections currentDirection)
         {
 

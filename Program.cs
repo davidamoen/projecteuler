@@ -12,7 +12,7 @@ namespace ProjectEuler
     {
         static void Main(string[] args)
         {
-            var answer = NinetySix.Go();
+            var answer = OneHundredTwelve.Go();
             Console.WriteLine(answer);
         }
     }
