@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Helpers.cs" />
+    <Compile Include="Models\Sudoku.cs" />
     <Compile Include="Models\Triangle.cs" />
     <Compile Include="Problems\Eight.cs" />
     <Compile Include="Problems\Eighteen.cs" />
@@ -74,6 +75,7 @@
     <Compile Include="Problems\Nine.cs" />
     <Compile Include="Problems\Nineteen.cs" />
     <Compile Include="Problems\NinetySeven.cs" />
+    <Compile Include="Problems\NinetySix.cs" />
     <Compile Include="Problems\NinetyTwo.cs" />
     <Compile Include="Problems\One.cs" />
     <Compile Include="Problems\OneHundredTwo.cs" />
@@ -112,6 +114,7 @@
     <Compile Include="Problems\TwentyThree.cs" />
     <Compile Include="Problems\TwentyTwo.cs" />
     <Compile Include="Problems\Two.cs" />
+    <Compile Include="Problems\TwoHundredFive.cs" />
     <Compile Include="Problems\TwoHundredSix.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -126,6 +129,7 @@
     <Content Include="Data\p059_cipher.txt" />
     <Content Include="Data\p067_triangle.txt" />
     <Content Include="Data\p079_keylog.txt" />
+    <Content Include="Data\p096_sudoku.txt" />
     <Content Include="Data\p102_triangles.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -9,6 +9,7 @@ using System.Numerics;
 using System.IO;
 using System.Collections;
 using ProjectEuler.Models;
+using System.Text.RegularExpressions;
 
 namespace ProjectEuler
 {
@@ -1208,6 +1209,20 @@ namespace ProjectEuler
 
             return list.OrderBy(n => n).ToList();
 
+        }
+
+        public static string[] GetPuzzlesFor96()
+        {
+            var list = new List<string>();
+
+            // var txt = File.ReadAllText("C:\\projects\\ProjectEuler\\ProjectEuler\\Data\\p042_words.txt");
+            var txt = File.ReadAllText("C:\\Dave_Source\\projecteuler\\Data\\p096_sudoku.txt");
+            txt = Regex.Replace(txt, "\r?\n", "\r\n");
+
+            RegexOptions regexOptions = 0;
+            regexOptions = regexOptions | RegexOptions.Multiline;
+            var testRegex = new Regex("^\\w+?\\s\\d+", regexOptions);
+            return testRegex.Split(txt, 1000, 0);
         }
 
         public static double GetPentagonForN(int n)
