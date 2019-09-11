@@ -11,7 +11,6 @@ namespace ProjectEuler.Problems
         public static long Go()
         {
             double target = .99;
-            double currentProportion = 0;
             double i = 100;
             bool targetReached = false;
             int bouncy = 0;
@@ -21,7 +20,7 @@ namespace ProjectEuler.Problems
                 var isBouncy = Helpers.IsBouncyNumber((long)i);
                 if (isBouncy) bouncy++;
 
-                currentProportion = bouncy / i;
+                double currentProportion = bouncy / i;
 
                 Console.WriteLine($"i = {i}, isBouncy = {isBouncy.ToString()}, Proportion = {Math.Round(currentProportion * 100, 5, MidpointRounding.AwayFromZero)}%");
 
