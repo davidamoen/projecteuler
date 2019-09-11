@@ -1600,6 +1600,408 @@ namespace ProjectEuler
             return true;
         }
 
+        public static BigInteger GetFibonacciValue(long k)
+        {
+            BigInteger twoPrevious = 0;
+            BigInteger previous = 1;
+            BigInteger current = twoPrevious + previous;
+
+            var counter = 2;
+            while (counter < k)
+            {
+                twoPrevious = previous;
+                previous = current;
+                current = twoPrevious + previous;
+                counter++;
+            }
+
+            return current;
+        }
+
+        public static int GetDigitCount(BigInteger n)
+        {
+            return n.ToString().Length;
+        }
+
+        public static bool AreLast9DigitsPanDigital(BigInteger n)
+        {
+            var count = GetDigitCount(n);
+
+            if (count < 9) return false;
+
+            var lastNine = n.ToString().Substring(count - 9, 9);
+            return Are9DigitsPandigital(lastNine);
+        }
+
+        public static bool AreFirst9DigitsPanDigital(BigInteger n)
+        {
+            var count = GetDigitCount(n);
+            if (count < 9) return false;
+            var firstNine = n.ToString().Substring(0, 9);
+            return Are9DigitsPandigital(firstNine);
+        }
+
+        public static List<MonopolySquare> GetMonopolyBoard()
+        {
+            return new List<MonopolySquare>()
+            {
+                new MonopolySquare
+                {
+                    Id = "00",
+                    Name = "GO"
+                },
+                new MonopolySquare
+                {
+                    Id = "01",
+                    Name = "A1"
+                },
+                new MonopolySquare
+                {
+                    Id = "02",
+                    Name = "CC1",
+                    IsCommunityChest = true
+                },
+                new MonopolySquare
+                {
+                    Id = "03",
+                    Name = "A2"
+                },
+                new MonopolySquare
+                {
+                    Id = "04",
+                    Name = "T1"
+                },
+                new MonopolySquare
+                {
+                    Id = "05",
+                    Name = "R1",
+                    IsRailroad = true
+                },
+                new MonopolySquare
+                {
+                    Id = "06",
+                    Name = "B1"
+                },
+                new MonopolySquare
+                {
+                    Id = "07",
+                    Name = "CH1",
+                    IsChance = true
+                },
+                new MonopolySquare
+                {
+                    Id = "08",
+                    Name = "B2"
+                },
+                new MonopolySquare
+                {
+                    Id = "09",
+                    Name = "B3"
+                },
+                new MonopolySquare
+                {
+                    Id = "10",
+                    Name = "JAIL"
+                },
+                new MonopolySquare
+                {
+                    Id = "11",
+                    Name = "C1"
+                },
+                new MonopolySquare
+                {
+                    Id = "12",
+                    Name = "U1",
+                    IsUtility = true
+                },
+                new MonopolySquare
+                {
+                    Id = "13",
+                    Name = "C2"
+                },
+                new MonopolySquare
+                {
+                    Id = "14",
+                    Name = "C3"
+                },
+                new MonopolySquare
+                {
+                    Id = "15",
+                    Name = "R2",
+                    IsRailroad = true
+                },
+                new MonopolySquare
+                {
+                    Id = "16",
+                    Name = "D1"
+                },
+                new MonopolySquare
+                {
+                    Id = "17",
+                    Name = "CC2",
+                    IsCommunityChest = true
+                },
+                new MonopolySquare
+                {
+                    Id = "18",
+                    Name = "D2"
+                },
+                new MonopolySquare
+                {
+                    Id = "19",
+                    Name = "D3"
+                },
+                new MonopolySquare
+                {
+                    Id = "20",
+                    Name = "FP"
+                },
+                new MonopolySquare
+                {
+                    Id = "21",
+                    Name = "E1"
+                },
+                new MonopolySquare
+                {
+                    Id = "22",
+                    Name = "CH2",
+                    IsChance = true
+                },
+                new MonopolySquare
+                {
+                    Id = "23",
+                    Name = "E2"
+                },
+                new MonopolySquare
+                {
+                    Id = "24",
+                    Name = "E3"
+                },
+                new MonopolySquare
+                {
+                    Id = "25",
+                    Name = "R3",
+                    IsRailroad = true
+                },
+                new MonopolySquare
+                {
+                    Id = "26",
+                    Name = "F1"
+                },
+                new MonopolySquare
+                {
+                    Id = "27",
+                    Name = "F2"
+                },
+                new MonopolySquare
+                {
+                    Id = "28",
+                    Name = "U2",
+                    IsUtility = true
+                },
+                new MonopolySquare
+                {
+                    Id = "29",
+                    Name = "F3"
+                },
+                new MonopolySquare
+                {
+                    Id = "39",
+                    Name = "G2J"
+                },
+                new MonopolySquare
+                {
+                    Id = "31",
+                    Name = "G1"
+                },
+                new MonopolySquare
+                {
+                    Id = "32",
+                    Name = "G2"
+                },
+                new MonopolySquare
+                {
+                    Id = "33",
+                    Name = "CC3",
+                    IsCommunityChest = true
+                },
+                new MonopolySquare
+                {
+                    Id = "34",
+                    Name = "G2"
+                },
+                new MonopolySquare
+                {
+                    Id = "35",
+                    Name = "R4",
+                    IsRailroad = true
+                },
+                new MonopolySquare
+                {
+                    Id = "36",
+                    Name = "CH3",
+                    IsChance = true
+                },
+                new MonopolySquare
+                {
+                    Id = "37",
+                    Name = "H1"
+                },
+                new MonopolySquare
+                {
+                    Id = "38",
+                    Name = "T2"
+                },
+                new MonopolySquare
+                {
+                    Id = "39",
+                    Name = "H1"
+                }
+            };
+        }
+
+        public static List<MonopolySquare> RunMonopolySimulation(int turns, int diceSides, bool applyRules)
+        {
+            var board = GetMonopolyBoard();
+            var counter = 0;
+            var currentLocation = 0;
+            var r = new Random();
+            var consecutiveDoubles = 0;
+
+            while (counter < turns)
+            {
+                var roll = Helpers.RollDice(diceSides, r);
+                if (roll.Dice1 == roll.Dice2)
+                {
+                    consecutiveDoubles++;
+                }
+
+                currentLocation = GetNextMonopolyLocationIndex(roll, currentLocation);
+                if (applyRules)
+                {
+                    if (board[currentLocation].Name == "G2J") 
+                    {
+                        currentLocation = 10;
+                    }
+
+                    if (board[currentLocation].IsChance)
+                    {
+                        currentLocation = HandleMonopolyChance(DrawCard(16, r), currentLocation, board);
+                    }
+
+                    if (board[currentLocation].IsCommunityChest)
+                    {
+                        currentLocation = HandleMonopolyCommunityChest(DrawCard(16, r), currentLocation);
+                    }
+
+                    if (consecutiveDoubles == 3)
+                    {
+                        currentLocation = 10;
+                        consecutiveDoubles = 0;
+                    }
+                }
+
+                board[currentLocation].Visits++;
+                counter++;
+            }
+
+            return board;
+        }
+
+        public static int GetNextMonopolyLocationIndex(DiceRoll roll, int currentLocation)
+        {
+            currentLocation += roll.Dice1 + roll.Dice2;
+
+            if (currentLocation >= 40)
+            {
+                currentLocation = (currentLocation % 40);
+            }
+            return currentLocation;
+        }
+
+        public static DiceRoll RollDice(int sides, Random r)
+        {
+            return new DiceRoll
+            {
+                Dice1 = r.Next(1, sides + 1),
+                Dice2 = r.Next(1, sides + 1)
+            };
+        }
+
+        public static int DrawCard(int totalCards, Random r)
+        {
+            return r.Next(1, totalCards + 1);
+        }
+
+        public static int HandleMonopolyChance(int cardNumber, int currentLocation, List<MonopolySquare> board)
+        {
+            switch(cardNumber)
+            {
+                case 1:
+                    return 0; // advance to Go
+                case 2:
+                    return 10; // go to Jail
+                case 3:
+                    return 11; // advance to C1
+                case 4:
+                    return 24; // advance to E3
+                case 5:
+                    return 39; // advance to H2
+                case 6:
+                    return 5; // advance to R1
+                case 7:
+                case 8:
+                    while (!board[currentLocation].IsRailroad)
+                    {
+                        currentLocation++;
+                        currentLocation %= 40;
+                    }
+                    return currentLocation; // advance to the nearest railroad
+                case 9:
+                    while (!board[currentLocation].IsUtility)
+                    {
+                        currentLocation++;
+                        currentLocation %= 40;
+                    }
+                    return currentLocation; // advance to the nearest utility
+                case 10:
+                    if (currentLocation >= 3)
+                    {
+                        return (currentLocation - 3) % 40;
+                    }
+                    else
+                    {
+                        return currentLocation - 3;
+                    }
+                default:
+                    return currentLocation;
+            }
+        }
+
+        public static int HandleMonopolyCommunityChest(int cardNumber, int currentLocation)
+        {
+            switch (cardNumber)
+            {
+                case 1:
+                    return 0; // advance to Go
+                case 2:
+                    return 10; // go to Jail
+                default:
+                    return currentLocation;
+            }
+        }
+
+        private static bool Are9DigitsPandigital(string digits)
+        {
+            var arr = digits.ToCharArray();
+            if (arr.Where(x => x == '0').Count() > 0)
+            {
+                return false;
+            }
+
+            return arr.Distinct().ToList().Count() == 9;
+        }
+
         private static Coordinates GetNextCoordinates(Coordinates currentCoordinates, SpiralDirections currentDirection)
         {
 
@@ -1808,5 +2210,11 @@ namespace ProjectEuler
         }
 
 
+    }
+
+    public class DiceRoll
+    {
+        public int Dice1 { get; set; }
+        public int Dice2 { get; set; }
     }
 }

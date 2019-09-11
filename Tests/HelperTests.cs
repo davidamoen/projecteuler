@@ -85,7 +85,7 @@ namespace Tests
             Assert.IsTrue(Helpers.IsMultipleOfAllNumbers(2520, list1));
 
 
-            var list2 = new List<int> { 1, 2, 3,4, 5};
+            var list2 = new List<int> { 1, 2, 3, 4, 5 };
             Assert.IsFalse(Helpers.IsMultipleOfAllNumbers(5, list2));
 
         }
@@ -114,7 +114,7 @@ namespace Tests
         [TestMethod]
         public void Test_GetProduct()
         {
-            var list1 = new List<int> { 1, 2, 3};
+            var list1 = new List<int> { 1, 2, 3 };
             Assert.AreEqual(6, Helpers.GetProduct(list1));
 
             var list2 = new List<int> { 9, 9, 8, 9 };
@@ -375,7 +375,7 @@ namespace Tests
         [TestMethod]
         public void Test_FindDecimalsAsStringForD()
         {
-            Assert.AreEqual("142857142", Helpers.FindDecimalsAsStringForD(7).Substring(0,9));
+            Assert.AreEqual("142857142", Helpers.FindDecimalsAsStringForD(7).Substring(0, 9));
 
             Assert.AreEqual("555555555", Helpers.FindDecimalsAsStringForD(18).Substring(0, 9));
 
@@ -820,6 +820,186 @@ namespace Tests
             Assert.IsFalse(Helpers.IsBouncyNumber(66420));
 
             Assert.IsTrue(Helpers.IsBouncyNumber(155349));
+        }
+
+        [TestMethod]
+        public void Test_GetFibonacciValue()
+        {
+            Assert.AreEqual(1, Helpers.GetFibonacciValue(1));
+
+            Assert.AreEqual(1, Helpers.GetFibonacciValue(2));
+
+            Assert.AreEqual(1, Helpers.GetFibonacciValue(2));
+
+            Assert.AreEqual(2, Helpers.GetFibonacciValue(3));
+
+            Assert.AreEqual(13, Helpers.GetFibonacciValue(7));
+
+            Assert.AreEqual(233, Helpers.GetFibonacciValue(13));
+
+            Assert.AreEqual(113, Helpers.GetDigitCount(Helpers.GetFibonacciValue(541)));
+
+            Assert.AreEqual(575, Helpers.GetDigitCount(Helpers.GetFibonacciValue(2749)));
+
+            Assert.IsFalse(Helpers.AreLast9DigitsPanDigital(5));
+
+            Assert.IsTrue(Helpers.AreLast9DigitsPanDigital(123456789));
+
+            Assert.IsFalse(Helpers.AreLast9DigitsPanDigital(123456780));
+
+            Assert.IsTrue(Helpers.AreLast9DigitsPanDigital(8877445123456789));
+
+            Assert.IsFalse(Helpers.AreFirst9DigitsPanDigital(5));
+
+            Assert.IsTrue(Helpers.AreFirst9DigitsPanDigital(123456789));
+
+            Assert.IsFalse(Helpers.AreFirst9DigitsPanDigital(123446789));
+
+            Assert.IsFalse(Helpers.AreFirst9DigitsPanDigital(123446780));
+
+            Assert.IsTrue(Helpers.AreFirst9DigitsPanDigital(9517384628181818181));
+        }
+
+        [TestMethod]
+        public void Test_Roll6SidedDice()
+        {
+            var rolls = new List<DiceRoll>();
+            var counter = 0;
+            var rollCount = 10000;
+            var r = new Random();
+
+            var errorMargin = 0.1;
+            var upperBound = (rollCount / 6) + ((rollCount / 6) * errorMargin);
+            var lowerBound = (rollCount / 6) - ((rollCount / 6) * errorMargin);
+
+            while (counter < rollCount)
+            {
+                rolls.Add(Helpers.RollDice(6, r));
+                counter++;
+            }
+
+            Assert.AreNotEqual(0, rolls.Where(x => x.Dice1 == 1).Count());
+            Assert.AreNotEqual(0, rolls.Where(x => x.Dice1 == 2).Count());
+            Assert.AreNotEqual(0, rolls.Where(x => x.Dice1 == 3).Count());
+            Assert.AreNotEqual(0, rolls.Where(x => x.Dice1 == 4).Count());
+            Assert.AreNotEqual(0, rolls.Where(x => x.Dice1 == 5).Count());
+            Assert.AreNotEqual(0, rolls.Where(x => x.Dice1 == 6).Count());
+            Assert.AreEqual(0, rolls.Where(x => x.Dice1 == 7).Count());
+            Assert.AreEqual(0, rolls.Where(x => x.Dice1 == 8).Count());
+
+            Assert.IsTrue(rolls.Where(x => x.Dice1 == 1).Count() >= lowerBound && rolls.Where(x => x.Dice1 == 1).Count() <= upperBound);
+            Assert.IsTrue(rolls.Where(x => x.Dice1 == 2).Count() >= lowerBound && rolls.Where(x => x.Dice1 == 2).Count() <= upperBound);
+            Assert.IsTrue(rolls.Where(x => x.Dice1 == 3).Count() >= lowerBound && rolls.Where(x => x.Dice1 == 3).Count() <= upperBound);
+            Assert.IsTrue(rolls.Where(x => x.Dice1 == 4).Count() >= lowerBound && rolls.Where(x => x.Dice1 == 4).Count() <= upperBound);
+            Assert.IsTrue(rolls.Where(x => x.Dice1 == 5).Count() >= lowerBound && rolls.Where(x => x.Dice1 == 5).Count() <= upperBound);
+            Assert.IsTrue(rolls.Where(x => x.Dice1 == 6).Count() >= lowerBound && rolls.Where(x => x.Dice1 == 6).Count() <= upperBound);
+        }
+
+        [TestMethod]
+        public void Test_DrawCard()
+        {
+            var r = new Random();
+            var arr = new int[18];
+            var n = 1000;
+            var counter = 0;
+            while(counter < n)
+            {
+                var draw = Helpers.DrawCard(16, r);
+                arr[draw]++;
+                counter++;
+            }
+
+            Assert.AreEqual(0, arr[0]);
+            Assert.AreEqual(0, arr[17]);
+            Assert.AreNotEqual(0, arr[1]);
+            Assert.AreNotEqual(0, arr[2]);
+            Assert.AreNotEqual(0, arr[3]);
+            Assert.AreNotEqual(0, arr[16]);
+        }
+
+        [TestMethod]
+        public void Test_HandleMonopolyCommunityChest()
+        {
+            Assert.AreEqual(0, Helpers.HandleMonopolyCommunityChest(1, 2));
+            Assert.AreEqual(10, Helpers.HandleMonopolyCommunityChest(2, 2));
+            Assert.AreEqual(2, Helpers.HandleMonopolyCommunityChest(5, 2));
+
+            Assert.AreEqual(0, Helpers.HandleMonopolyCommunityChest(1, 17));
+            Assert.AreEqual(10, Helpers.HandleMonopolyCommunityChest(2, 17));
+            Assert.AreEqual(17, Helpers.HandleMonopolyCommunityChest(5, 17));
+
+            Assert.AreEqual(0, Helpers.HandleMonopolyCommunityChest(1, 33));
+            Assert.AreEqual(10, Helpers.HandleMonopolyCommunityChest(2, 33));
+            Assert.AreEqual(33, Helpers.HandleMonopolyCommunityChest(5, 33));
+        }
+
+        [TestMethod]
+        public void Test_HandleMonopolyChance()
+        {
+            var board = Helpers.GetMonopolyBoard();
+
+            Assert.AreEqual(0, Helpers.HandleMonopolyChance(1, 7, board));
+            Assert.AreEqual(10, Helpers.HandleMonopolyChance(2, 7, board));
+            Assert.AreEqual(11, Helpers.HandleMonopolyChance(3, 7, board));
+            Assert.AreEqual(24, Helpers.HandleMonopolyChance(4, 7, board));
+            Assert.AreEqual(24, Helpers.HandleMonopolyChance(4, 7, board));
+            Assert.AreEqual(39, Helpers.HandleMonopolyChance(5, 7, board));
+            Assert.AreEqual(5, Helpers.HandleMonopolyChance(6, 7, board));
+
+            // railroads
+            Assert.AreEqual(15, Helpers.HandleMonopolyChance(7, 7, board));
+            Assert.AreEqual(25, Helpers.HandleMonopolyChance(7, 22, board));
+            Assert.AreEqual(15, Helpers.HandleMonopolyChance(8, 7, board));
+            Assert.AreEqual(25, Helpers.HandleMonopolyChance(8, 22, board));
+            Assert.AreEqual(5, Helpers.HandleMonopolyChance(7, 36, board));
+            Assert.AreEqual(5, Helpers.HandleMonopolyChance(8, 36, board));
+
+            // utilities
+            Assert.AreEqual(12, Helpers.HandleMonopolyChance(9, 7, board));
+            Assert.AreEqual(28, Helpers.HandleMonopolyChance(9, 22, board));
+            Assert.AreEqual(12, Helpers.HandleMonopolyChance(9, 36, board));
+
+            // back 3 squares
+            Assert.AreEqual(4, Helpers.HandleMonopolyChance(10, 7, board));
+            Assert.AreEqual(19, Helpers.HandleMonopolyChance(10, 22, board));
+            Assert.AreEqual(33, Helpers.HandleMonopolyChance(10, 36, board));
+
+            // default
+            Assert.AreEqual(7, Helpers.HandleMonopolyChance(12, 7, board));
+            Assert.AreEqual(22, Helpers.HandleMonopolyChance(12, 22, board));
+            Assert.AreEqual(36, Helpers.HandleMonopolyChance(12, 36, board));
+
+
+        }
+
+        [TestMethod]
+        public void Test_MonopolySimulation_NoRules()
+        {
+            var turns = 100000;
+            var diceSides = 6;
+
+            var errorMargin = 0.05;
+            var upperBound = (turns / 40) + ((turns / 40) * errorMargin);
+            var lowerBound = (turns / 40) - ((turns / 40) * errorMargin);
+
+            var board = Helpers.RunMonopolySimulation(turns, diceSides, false);
+
+            var n = 0;
+            while (n < 40)
+            {
+                Assert.IsTrue(board[n].Visits >= lowerBound && board[n].Visits <= upperBound);
+                n++;
+            }
+
+        }
+
+        [TestMethod]
+        public void Test_MonopolySimulation_GetNextLocation()
+        {
+            Assert.AreEqual(6, Helpers.GetNextMonopolyLocationIndex(new DiceRoll { Dice1 = 3, Dice2 = 3 }, 0));
+            Assert.AreEqual(0, Helpers.GetNextMonopolyLocationIndex(new DiceRoll { Dice1 = 1, Dice2 = 1 }, 38));
+            Assert.AreEqual(1, Helpers.GetNextMonopolyLocationIndex(new DiceRoll { Dice1 = 1, Dice2 = 2 }, 38));
+            Assert.AreEqual(4, Helpers.GetNextMonopolyLocationIndex(new DiceRoll { Dice1 = 3, Dice2 = 3 }, 38));
         }
     }
 }

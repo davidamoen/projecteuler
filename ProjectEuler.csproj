@@ -43,10 +43,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Helpers.cs" />
+    <Compile Include="Models\MonopolySquare.cs" />
     <Compile Include="Models\Sudoku.cs" />
     <Compile Include="Models\Triangle.cs" />
     <Compile Include="Problems\Eight.cs" />
     <Compile Include="Problems\Eighteen.cs" />
+    <Compile Include="Problems\EightyFour.cs" />
     <Compile Include="Problems\Eleven.cs" />
     <Compile Include="Problems\Fifteen.cs" />
     <Compile Include="Problems\Fifty.cs" />
@@ -78,6 +80,7 @@
     <Compile Include="Problems\NinetySix.cs" />
     <Compile Include="Problems\NinetyTwo.cs" />
     <Compile Include="Problems\One.cs" />
+    <Compile Include="Problems\OneHundredFour.cs" />
     <Compile Include="Problems\OneHundredTwelve.cs" />
     <Compile Include="Problems\OneHundredTwo.cs" />
     <Compile Include="Problems\Seven.cs" />
@@ -121,6 +124,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include=".editorconfig" />
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
