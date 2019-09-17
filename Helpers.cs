@@ -29,13 +29,13 @@ namespace ProjectEuler
 
                 factors.Add(smallestFactor);
 
-                currentN = currentN / smallestFactor;
+                currentN /= smallestFactor;
 
             }
 
-            if (currentN != n) factors.Add(currentN);
+            factors.Add(currentN);
 
-            return factors;
+            return factors.Distinct().ToList();
 
         }
 
@@ -605,7 +605,7 @@ namespace ProjectEuler
         {
             var list = new List<string>();
 
-            var txt = File.ReadAllText("C:\\projects\\ProjectEuler\\ProjectEuler\\Data\\p022_names.txt");
+            var txt = File.ReadAllText("../../../Data/p022_names.txt");
 
             txt = txt.Replace("\"", string.Empty);
 
@@ -1989,6 +1989,34 @@ namespace ProjectEuler
                 default:
                     return currentLocation;
             }
+        }
+
+        public static long Radical(long n)
+        {
+            if (n == 1) return 1;
+            var factors = GetPrimeFactors(n);
+            long product = 1;
+            foreach(var factor in factors)
+            {
+                product *= factor;
+            }
+            return product;
+        }
+
+        public static List<OrderedRadical> GetOrderedRadicals(int upperLimit)
+        {
+            var list = new List<OrderedRadical>();
+
+            for (var i = 1; i <= upperLimit; i++)
+            {
+                list.Add(new OrderedRadical
+                {
+                    N = i,
+                    RadN = Helpers.Radical(i)
+                });
+            }
+
+            return list.OrderBy(r => r.RadN).ThenBy(r => r.N).ToList();
         }
 
         private static bool Are9DigitsPandigital(string digits)

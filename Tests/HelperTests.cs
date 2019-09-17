@@ -42,14 +42,14 @@ namespace Tests
             Assert.AreEqual(2, test1.Count);
 
             var test2 = Helpers.GetPrimeFactors(100);
-            Assert.AreEqual(4, test2.Count);
+            Assert.AreEqual(2, test2.Count);
 
 
             var test3 = Helpers.GetPrimeFactors(5000);
-            Assert.AreEqual(7, test3.Count);
+            Assert.AreEqual(2, test3.Count);
 
             var test4 = Helpers.GetPrimeFactors(123456789);
-            Assert.AreEqual(4, test4.Count);
+            Assert.AreEqual(3, test4.Count);
 
 
 
@@ -978,7 +978,7 @@ namespace Tests
             var turns = 100000;
             var diceSides = 6;
 
-            var errorMargin = 0.05;
+            var errorMargin = 0.1;
             var upperBound = (turns / 40) + ((turns / 40) * errorMargin);
             var lowerBound = (turns / 40) - ((turns / 40) * errorMargin);
 
@@ -1000,6 +1000,38 @@ namespace Tests
             Assert.AreEqual(0, Helpers.GetNextMonopolyLocationIndex(new DiceRoll { Dice1 = 1, Dice2 = 1 }, 38));
             Assert.AreEqual(1, Helpers.GetNextMonopolyLocationIndex(new DiceRoll { Dice1 = 1, Dice2 = 2 }, 38));
             Assert.AreEqual(4, Helpers.GetNextMonopolyLocationIndex(new DiceRoll { Dice1 = 3, Dice2 = 3 }, 38));
+        }
+
+        [TestMethod]
+        public void Test_Radical()
+        {
+            Assert.AreEqual(1, Helpers.Radical(1));
+            Assert.AreEqual(2, Helpers.Radical(2));
+            Assert.AreEqual(3, Helpers.Radical(3));
+            Assert.AreEqual(2, Helpers.Radical(4));
+            Assert.AreEqual(6, Helpers.Radical(6));
+            Assert.AreEqual(2, Helpers.Radical(8));
+            Assert.AreEqual(3, Helpers.Radical(9));
+            Assert.AreEqual(10, Helpers.Radical(10));
+            Assert.AreEqual(42, Helpers.Radical(504));
+        }
+
+        [TestMethod]
+        public void Test_OrderedRadicals()
+        {
+            var list = Helpers.GetOrderedRadicals(10);
+
+            Assert.AreEqual(1, list[0].N);
+            Assert.AreEqual(2, list[1].N);
+            Assert.AreEqual(4, list[2].N);
+            Assert.AreEqual(8, list[3].N);
+            Assert.AreEqual(3, list[4].N);
+            Assert.AreEqual(9, list[5].N);
+            Assert.AreEqual(5, list[6].N);
+            Assert.AreEqual(6, list[7].N);
+            Assert.AreEqual(7, list[8].N);
+            Assert.AreEqual(10, list[9].N);
+            
         }
     }
 }
