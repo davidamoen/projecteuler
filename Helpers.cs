@@ -141,24 +141,6 @@ namespace ProjectEuler
 
         public static long FindSumofPrimesBelowN(int n)
         {
-
-            // my original solution
-
-            //long p = 2;
-            //long total = 0;
-            //while (p < n)
-            //{
-            //    total = total + p;
-            //    p = Helpers.GetNextPrime(p);
-
-            //    Console.WriteLine(string.Format("p = {0}", p));
-            //    Console.WriteLine(string.Format("total = {0}", total));
-            //}
-
-            //return total;
-
-            // much faster solution using linq
-
             var result = Enumerable.Range(2, n - 3)
                 .AsParallel()
                 .Where(x => IsPrime(x))
