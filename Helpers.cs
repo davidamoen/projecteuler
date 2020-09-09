@@ -198,29 +198,6 @@ namespace ProjectEuler
             return list;
         }
 
-        public static long GetLargestCommonFactor(List<long> list)
-        {
-            var factorsList = new List<List<long>>();
-            foreach (var n in list)
-            {
-                factorsList.Add(GetFactorsOfN(n));
-            }
-
-            //foreach(var factors in factorsList)
-            //{
-            //    foreach(var factor in factors)
-            //    {
-
-
-            //    }
-            //}
-
-
-            var commonFactors = new List<long>();
-
-            return 0;
-        }
-
         public static List<long> GetProperDivisorsOfN(long n)
         {
 
@@ -252,7 +229,7 @@ namespace ProjectEuler
 
                 if (current % 2 == 0)
                 {
-                    current = current / 2;
+                    current /= 2;
                 }
                 else
                 {
@@ -379,7 +356,6 @@ namespace ProjectEuler
         {
             if (list[0] == 0) return GetBritishUsageForTens(list);
 
-
             StringBuilder str = new StringBuilder();
             str.Append(GetSingleDigitNumberAsString(list[0]));
             str.Append(" hundred");
@@ -467,10 +443,7 @@ namespace ProjectEuler
                     return "nineteen";
                 default:
                     return string.Empty;
-
-
             }
-
         }
 
         public static string GetSingleDigitNumberAsString(int n)
@@ -873,14 +846,14 @@ namespace ProjectEuler
             // first do the diagonal from upper left to lower right
             for (var i = 0; i < grid.Count; i++)
             {
-                total = total + grid[i][i];
+                total += grid[i][i];
             }
 
             // now do the diagonal from lower left to upper right
             for (var i = 0; i < grid.Count; i++)
             {
                 var yCoord = grid.Count - 1 - i;
-                total = total + grid[yCoord][i];
+                total += grid[yCoord][i];
             }
 
             // substact 1 because the middle cell was counted twice
